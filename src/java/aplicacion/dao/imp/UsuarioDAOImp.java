@@ -8,6 +8,7 @@ package aplicacion.dao.imp;
 import aplicacion.dao.UsuarioDAO;
 import aplicacion.hibernate.configuracion.Hibernateutil;
 import aplicacion.modelo.dominio.Usuario;
+import java.util.ArrayList;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
@@ -86,6 +87,14 @@ public class UsuarioDAOImp implements UsuarioDAO {
         session.close();
     
     
+    }
+
+    @Override
+    public ArrayList<Usuario> Listausuario() {
+         Session session = Hibernateutil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(Usuario.class);
+        return (ArrayList<Usuario>) criteria.list();
     }
         
 

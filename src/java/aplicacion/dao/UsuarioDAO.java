@@ -6,6 +6,7 @@
 package aplicacion.dao;
 
 import aplicacion.modelo.dominio.Usuario;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,4 +18,5 @@ public interface UsuarioDAO {
     Usuario validarUsuario(String nombreUsuario, String password);
     Usuario obtenerUsuario(String nombreUsuario);
     void modificarUsuario(Usuario usuario);
+    public ArrayList<Usuario> Listausuario();
 }
