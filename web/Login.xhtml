@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Jugueteria.com</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel header="Login">
+                <p:panelGrid columns="2">
+                    <p:outputLabel id="tbl" value="Ingrese Usuario"/>
+                    <p:inputText id="lbl" value="#{usuarioFormbean.nombre}" /> 
+                    <p:outputLabel id="tbl2" value="Ingrese Contraseña"/>
+                    <p:inputNumber id="lbl2" value="#{usuarioFormbean.pass}"/>
+                    <p:commandButton id="btn" value="Ingresar" actionListener="#{usuarioFormbean.validarusuario()}" />
+                </p:panelGrid>
+                <p:commandLink id="link" value="Crear Cuenta" 
+                               update=":AltaUsuario"
+                               oncomplete="PF('Agregar').show"/> 
+            </p:panel>
+        </h:form>
+        <p:dialog style="background-color:  aquamarine !important" id="AltaUsuario" 
+                  header="Crear cuenta" widgetVar="Agregar"
+                  resizable="false" modal="true" showEffect="explode" hideEffect="bounce" height="200" >
+                <h:form id="formulario">
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Nombre"/>
+                    </p:panelGrid>   
+                </h:form>
+        </p:dialog>
+    </h:body>
+</html>
+

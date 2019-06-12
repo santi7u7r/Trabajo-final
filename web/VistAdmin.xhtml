@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Login</title>
+    </h:head>
+    <h:body style="background-color: black !important">
+        <h:form>
+            <p:panel header="Usuarios Ingresados" >
+                <p:panelGrid columns="5">
+                    <p:dataTable id="tabla" value="#{usuarioFormbean.g}" emptyMessage="Nada" var="us">
+                        <p:column headerText="Nombre Usuario">
+                            <p:outputLabel value="#{us.nombreUsuario}"/>
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <p:outputLabel value="#{us.nombres}"/>
+                        </p:column>
+                        <p:column headerText="Tipo de Usuario">
+                            <p:outputLabel value="#{us.tipoUsuario}"/>
+                        </p:column>
+                        <p:column headerText="Contraseña">
+                            <p:outputLabel value="#{us.password}"/>
+                        </p:column>
+                        <p:column headerText="Estado">
+                            <p:outputLabel value="#{us.estado}"/>
+                        </p:column>
+                        <p:column headerText="Modificar">
+                            <p:commandButton value="Eliminar"/>
+                            <p:commandButton value="Modificar"/>
+                        </p:column>
+                    </p:dataTable>         
+                </p:panelGrid>
+            </p:panel>
+        </h:form>       
+    </h:body>
+</html>
+
