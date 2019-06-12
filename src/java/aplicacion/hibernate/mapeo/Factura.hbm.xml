@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/06/2019 10:53:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="proyecto" name="aplicacion.modelo.dominio.Factura" optimistic-lock="version" table="factura">
+    <id name="numFactura" type="int">
+      <column name="numFactura"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="aplicacion.modelo.dominio.Modopago" fetch="select" name="modopago">
+      <column name="modoPago_idmodoPago" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="aplicacion.modelo.dominio.Usuario" fetch="select" name="usuario">
+      <column name="usuarios_codigo" not-null="true"/>
+    </many-to-one>
+    <property name="fecha" type="timestamp">
+      <column length="19" name="fecha"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="detalles" table="detalle">
+      <key>
+        <column name="factura_numFactura" not-null="true"/>
+      </key>
+      <one-to-many class="aplicacion.modelo.dominio.Detalle"/>
+    </set>
+  </class>
+</hibernate-mapping>

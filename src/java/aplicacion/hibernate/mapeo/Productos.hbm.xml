@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/06/2019 10:53:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="proyecto" name="aplicacion.modelo.dominio.Producto" optimistic-lock="version" table="productos">
+    <id name="codProducto" type="int">
+      <column name="codProducto"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="aplicacion.modelo.dominio.Categoria" fetch="select" name="categoria">
+      <column name="categorias_idcategoria" not-null="true"/>
+    </many-to-one>
+    <property name="descripcion" type="string">
+      <column length="45" name="descripcion"/>
+    </property>
+    <property name="precio" type="java.lang.Double">
+      <column name="precio" precision="22" scale="0"/>
+    </property>
+    <property name="stock" type="java.lang.Integer">
+      <column name="stock"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="detalles" table="detalle">
+      <key>
+        <column name="productos_codProducto" not-null="true"/>
+      </key>
+      <one-to-many class="aplicacion.modelo.dominio.Detalle"/>
+    </set>
+  </class>
+</hibernate-mapping>

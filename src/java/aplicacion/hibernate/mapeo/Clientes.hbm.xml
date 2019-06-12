@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/06/2019 10:53:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="proyecto" name="aplicacion.modelo.dominio.Cliente" optimistic-lock="version" table="clientes">
+    <id name="dni" type="int">
+      <column name="dni"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="domicilio" type="string">
+      <column length="45" name="domicilio"/>
+    </property>
+    <property name="provincia" type="string">
+      <column length="45" name="provincia"/>
+    </property>
+    <property name="pais" type="string">
+      <column length="45" name="pais"/>
+    </property>
+    <property name="fechaNac" type="timestamp">
+      <column length="19" name="fechaNac"/>
+    </property>
+    <property name="telefono" type="string">
+      <column length="45" name="telefono"/>
+    </property>
+    <property name="mail" type="string">
+      <column length="45" name="mail"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="usuarios" table="usuarios">
+      <key>
+        <column name="clientes_dni" not-null="true"/>
+      </key>
+      <one-to-many class="aplicacion.modelo.dominio.Usuario"/>
+    </set>
+  </class>
+</hibernate-mapping>

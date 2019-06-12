@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08/06/2019 10:53:27 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="proyecto" name="aplicacion.modelo.dominio.Usuario" optimistic-lock="version" table="usuarios">
+    <id name="codigo" type="int">
+      <column name="codigo"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="aplicacion.modelo.dominio.Cliente" fetch="select" name="cliente">
+      <column name="clientes_dni" not-null="true"/>
+    </many-to-one>
+    <property name="nombreUsuario" type="string">
+      <column length="45" name="nombreUsuario"/>
+    </property>
+    <property name="password" type="string">
+      <column length="45" name="password"/>
+    </property>
+    <property name="tipoUsuario" type="string">
+      <column length="45" name="tipoUsuario"/>
+    </property>
+    <property name="apellidos" type="string">
+      <column length="45" name="apellidos"/>
+    </property>
+    <property name="nombres" type="string">
+      <column length="45" name="nombres"/>
+    </property>
+    <property name="estado" type="java.lang.Boolean">
+      <column name="estado"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="facturas" table="factura">
+      <key>
+        <column name="usuarios_codigo" not-null="true"/>
+      </key>
+      <one-to-many class="aplicacion.modelo.dominio.Factura"/>
+    </set>
+  </class>
+</hibernate-mapping>
