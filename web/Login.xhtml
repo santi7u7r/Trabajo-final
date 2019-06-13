@@ -6,30 +6,51 @@
     <h:head>
         <title>Jugueteria.com</title>
     </h:head>
-    <h:body>
-        <h:form>
-            <p:panel header="Login">
+    <h:body style="background-color: #000000!important">
+        <p:panel header="Login">
+            <h:form> 
+                <p:growl id="mensaje">
+                </p:growl>
                 <p:panelGrid columns="2">
                     <p:outputLabel id="tbl" value="Ingrese Usuario"/>
-                    <p:inputText id="lbl" value="#{usuarioFormbean.nombre}" /> 
+                    <p:inputText id="lbl" value="#{usuarioFormbean.nombre}" required="true"/> 
                     <p:outputLabel id="tbl2" value="Ingrese Contraseña"/>
-                    <p:inputNumber id="lbl2" value="#{usuarioFormbean.pass}"/>
+                    <p:inputText id="lbl2" value="#{usuarioFormbean.pass}" required="true"/>
                     <p:commandButton id="btn" value="Ingresar" actionListener="#{usuarioFormbean.validarusuario()}" />
-                </p:panelGrid>
-                <p:commandLink id="link" value="Crear Cuenta" 
-                               update=":AltaUsuario"
-                               oncomplete="PF('Agregar').show"/> 
-            </p:panel>
-        </h:form>
-        <p:dialog style="background-color:  aquamarine !important" id="AltaUsuario" 
+                               <p:commandLink id="link" value="Crear Cuenta" 
+                               update=":altaus"
+                               oncomplete="PF('Agregar').show()"/>
+                </p:panelGrid> 
+            </h:form>
+        </p:panel>
+        
+        <p:dialog id="altaus" 
                   header="Crear cuenta" widgetVar="Agregar"
-                  resizable="false" modal="true" showEffect="explode" hideEffect="bounce" height="200" >
-                <h:form id="formulario">
+                  resizable="false" modal="true" showEffect="pulsate" hideEffect="shake" height="200" >
+                <h:form id="frmAltaUs">
                     <p:panelGrid columns="2">
+                        <p:outputLabel value="NombreUsuario"/>
+                        <p:inputText value="#{usuarioFormbean.unusuario.nombreUsuario}" required="true"/>
                         <p:outputLabel value="Nombre"/>
-                    </p:panelGrid>   
+                        <p:inputText value="#{usuarioFormbean.unusuario.nombres}" required="true"/>
+                        <p:outputLabel value="Apellido"/>
+                        <p:inputText value="#{usuarioFormbean.unusuario.apellidos}" required="true"/>
+                        <p:outputLabel value="Contraseña"/>
+                        <p:inputText value="#{usuarioFormbean.unusuario.password}" required="true"/>
+                        <p:commandButton id="btn" value="Listo" actionListener="#{usuarioFormbean.altadeusuario()}"
+                                         oncomplete="PF('Agregar').hide()"/>
+                    </p:panelGrid>
                 </h:form>
         </p:dialog>
+                <p:confirmDialog  id="frmconfirmdialogo" global="true" showEffect="fade" hideEffect="fade">
+                          <h:form id="frmconficacionlibro">
+                              <p:commandButton value="Si" type="button"
+                                               styleClass="ui-confirmdialog-yes"  icon="ui-icon-check"/>
+                              <p:commandButton value="No" type="button"
+                                               styleClass="ui-confirmdialog-no" icon="ui-icon-close"
+                                               style="float:right;"/>
+                           </h:form>                     
+            </p:confirmDialog>
     </h:body>
 </html>
 
