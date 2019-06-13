@@ -22,7 +22,7 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @ViewScoped
 public class UsuarioFormbean {
- @ManagedProperty(value="{UsuarioBean}")
+ @ManagedProperty(value="#{usuariobean}")
  private UsuarioBean usuariobean;
     private Cliente uncliente;//contiene los atributos de un cliente. para que no haya confunciones en la vista
     private Usuario unusuario;//contiene los atributos de un usuario. el usuario admin esta cargado por defecto.
