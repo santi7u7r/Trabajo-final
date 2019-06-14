@@ -22,72 +22,59 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class UsuarioBean {
-    private ClienteDAO clientedao;
-    private UsuarioDAO usuariodao;
+     private UsuarioDAO clienteDAO;
+        private Usuario a;
+        ClienteDAO UsuarioDAO;
     /**
-     * Creates a new instance of UsuarioBean
+     * Creates a new instance of NewJSFManagedBean
      */
     public UsuarioBean() {
-        clientedao=new ClienteDAOImp();
-        usuariodao=new UsuarioDAOImp();
-       
+        clienteDAO=new UsuarioDAOImp();
+        a=new Usuario();
+        UsuarioDAO= new ClienteDAOImp();
     }
-    public void agregaruser(Usuario nuevousuario)
+    public void agregar(Usuario b)
     {
-        getUsuariodao().crearUsuario(nuevousuario);
-       
+        getClienteDAO().crearUsuario(b);
     }
-    public ArrayList<Usuario> obtenerlista()
-    {ArrayList<Usuario> r=new ArrayList();
-    for(int i=0;i<getUsuariodao().Listausuario().size();i++)
+       public void borrado(Usuario a)
     {
-        if(getUsuariodao().Listausuario().get(i).getEstado()==true)
-        {
-          r.add(getUsuariodao().Listausuario().get(i));
-        }
-    }
-     return r;   /*en esta parte solo se envian los usuarios que se encuentran con el estado==true.
-      esto quiere decir que lo demas que se encuentren desactivados no 
-    seran borrados al menos que el administrador elija esa opcion. */
-    }
-    // supongo yo que en la vista cuando se muestra la lista de usuario.
-    public void borrado(Usuario a)
-    {
-        getUsuariodao().borrarUsuario(a);
+        getClienteDAO().borrarUsuario(a);
     }
     public void modificarusuariobean(Usuario e)
     {
-        getUsuariodao().modificarUsuario(e);
+        getClienteDAO().modificarUsuario(e);
     }
     public Usuario validacion_user(String nombre,String pass)
     {
-        return getUsuariodao().validarUsuario(nombre, pass);
-    }
-    /**
-     * @return the clientedao
-     */
-    public ClienteDAO getClientedao() {
-        return clientedao;
+        return getClienteDAO().validarUsuario(nombre, pass);
     }
 
     /**
-     * @param clientedao the clientedao to set
+     * @return the clienteDAO
      */
-    public void setClientedao(ClienteDAO clientedao) {
-        this.clientedao = clientedao;
-    }
-    /**
-     * @return the usuariodao
-     */
-    public UsuarioDAO getUsuariodao() {
-        return usuariodao;
+    public UsuarioDAO getClienteDAO() {
+        return clienteDAO;
     }
 
     /**
-     * @param usuariodao the usuariodao to set
+     * @param clienteDAO the clienteDAO to set
      */
-    public void setUsuariodao(UsuarioDAO usuariodao) {
-        this.usuariodao = usuariodao;
+    public void setClienteDAO(UsuarioDAO clienteDAO) {
+        this.clienteDAO = clienteDAO;
     }
 
+    /**
+     * @return the a
+     */
+    public Usuario getA() {
+        return a;
+    }
+
+    /**
+     * @param a the a to set
+     */
+    public void setA(Usuario a) {
+        this.a = a;
+    }
 }

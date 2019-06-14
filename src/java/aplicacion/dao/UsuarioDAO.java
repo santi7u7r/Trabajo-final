@@ -18,5 +18,4 @@ public interface UsuarioDAO {
     public Usuario validarUsuario(String nombreUsuario, String password);
     public Usuario obtenerUsuario(String nombreUsuario);
    public  void modificarUsuario(Usuario usuario);
-    public ArrayList<Usuario> Listausuario();
 }

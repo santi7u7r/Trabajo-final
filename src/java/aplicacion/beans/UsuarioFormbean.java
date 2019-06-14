@@ -10,6 +10,7 @@ import aplicacion.modelo.dominio.Usuario;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -23,26 +24,31 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @ViewScoped
 public class UsuarioFormbean implements Serializable {
- @ManagedProperty(value="#{UsuarioBean}")
- private UsuarioBean usuariobean;
-    private Cliente uncliente;//contiene los atributos de un cliente. para que no haya confunciones en la vista
+  private Cliente uncliente;//contiene los atributos de un cliente. para que no haya confunciones en la vista
     private Usuario unusuario;//contiene los atributos de un usuario. el usuario admin esta cargado por defecto.
     private ArrayList<Usuario> g;// esto unicamente lo usara el administrador para dar baja a los usuario y mostrar en la vista. no se me ocurrio otra idea :(
     private String nombre;//para la validacion 
     private String pass; //del usuario
     private Usuario usuarioactivo;
+    @ManagedProperty(value="#{r}")
+    private UsuarioBean r;
     /**
      * Creates a new instance of UsuarioFormbean
      */
     public UsuarioFormbean() {
-         usuariobean=new UsuarioBean();
         uncliente=new Cliente();//inicializacion 
         unusuario=new Usuario();
-        g=new ArrayList();
+       
+    }
+    @PostConstruct
+    public void init()
+    {
+        r=new UsuarioBean();
+         g=new ArrayList();
     }
     public String validarusuario()
     {String t=null;// aqui pone el nombre de la pagina cuando no se encuentre al usuario
-    setUsuarioactivo(getUsuariobean().validacion_user(getNombre(), getPass()));
+    setUsuarioactivo(getR().validacion_user(getNombre(), getPass()));
         if(getUsuarioactivo()!=null)
         {
             t= "nombrepagina" ;// aqui pone el nombre de la pagina cuando se encuentre al usuario
@@ -57,50 +63,33 @@ public class UsuarioFormbean implements Serializable {
         getUnusuario().setEstado(true);//estos campos no se piden en la vista. ya que al crearse la cuenta, su estado cambiaria a verdadero.
         getUnusuario().setTipoUsuario("Cliente");// esto esta predefinido ya que solo habra un solo administrador. y las demas cuentas seran clientes unicamente
         getUnusuario().setCliente(getUncliente());// ya que las tablas se encuentran relacionas. debido a que existe un atributo en la clase usuario que es del tipo cliente. 
-        getUnusuario().setCodigo(codigo);// espero que lo entiendas cuando vayas hacer la vista.
-        System.out.println("aaaaaaaaa");
-        try
+        getUnusuario().setCodigo(678);// espero que lo entiendas cuando vayas hacer la vista.
+        
+      try
       {
-          getUsuariobean().agregaruser(getUnusuario());
-        //esto nos ayudara a actualizar la lista exclusiva para el administrador. sinceramente nose me ocurrio otra idea.  espero que el profe nos ayude :(
-          FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_INFO,"Se cargo correctamente el usuario",":)"+ getUnusuario().getApellidos()); 
-          FacesContext.getCurrentInstance().addMessage(null, facesmessage);// para mostrar mensaje
+          getR().agregar(getUnusuario());
+          FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_INFO,"SIN ERORES",":)"+ getUnusuario().getApellidos()); 
+          FacesContext.getCurrentInstance().addMessage(null, facesmessage);
+         
       }
       catch(Exception e)
       {
           FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al cargar",":("+ getUnusuario().getApellidos()); 
           FacesContext.getCurrentInstance().addMessage(null, facesmessage);
       }
-      setUnusuario(new Usuario());// para limpiar los campos cuando se termine de cargar un usuario
+      // para limpiar los campos cuando se termine de cargar un usuario
     }
     public void bajadeusuario(Usuario usuario1)
     {
-    getUsuariobean().borrado(usuario1);
-    obtenerlista();
+    getR().borrado(usuario1);
+  
     }
-    public void obtenerlista()
-    {
-        setG(getUsuariobean().obtenerlista());//trae la lista con los usuarios con estado==true
-    }
+    
     public void modificacion(Usuario usuario2)
     {
          // este procedimiento recibira el usuario que haya elegido el administrador al aser click en el icono(segun mi imaginacion). ya que para mostrar un usuario se uso una variable para
         // hacerlo y los datos que se cambien se recibiraan a aqui. como en el tp 4 en Modificar libro. revisar tp4(nombre del archivo"porultimaveztp4"
-        getUsuariobean().modificarusuariobean(usuario2);
-      obtenerlista();
-    }
-    /**
-     * @return the usuariobean
-     */
-    public UsuarioBean getUsuariobean() {
-        return usuariobean;
-    }
-
-    /**
-     * @param usuariobean the usuariobean to set
-     */
-    public void setUsuariobean(UsuarioBean usuariobean) {
-        this.usuariobean = usuariobean;
+        getR().modificarusuariobean(usuario2);
     }
 
     /**
@@ -186,5 +175,20 @@ public class UsuarioFormbean implements Serializable {
     public void setUsuarioactivo(Usuario usuarioactivo) {
         this.usuarioactivo = usuarioactivo;
     }
+
+    /**
+     * @return the r
+     */
+    public UsuarioBean getR() {
+        return r;
+    }
+
+    /**
+     * @param r the r to set
+     */
+    public void setR(UsuarioBean r) {
+        this.r = r;
+    }
+
     
 }

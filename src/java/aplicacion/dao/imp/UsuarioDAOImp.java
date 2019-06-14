@@ -89,18 +89,6 @@ public class UsuarioDAOImp implements UsuarioDAO, Serializable {
         session.close();
     
     
-    }
-
-    @Override
-    public ArrayList<Usuario> Listausuario() {
-         Session session = Hibernateutil.getSessionFactory().openSession();
-        session.beginTransaction();
-        Criteria criteria = session.createCriteria(Usuario.class);
-        return (ArrayList<Usuario>) criteria.list();
-    }
-        
-
-    
-    
+    }   
 
 }
