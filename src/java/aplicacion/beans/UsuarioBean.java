@@ -8,6 +8,7 @@ package aplicacion.beans;
 import aplicacion.dao.ClienteDAO;
 import aplicacion.dao.UsuarioDAO;
 import aplicacion.dao.imp.ClienteDAOImp;
+import aplicacion.dao.imp.UsuarioDAOImp;
 import aplicacion.modelo.dominio.Cliente;
 import aplicacion.modelo.dominio.Usuario;
 import java.util.ArrayList;
@@ -28,11 +29,13 @@ public class UsuarioBean {
      */
     public UsuarioBean() {
         clientedao=new ClienteDAOImp();
+        usuariodao=new UsuarioDAOImp();
        
     }
     public void agregaruser(Usuario nuevousuario)
     {
         getUsuariodao().crearUsuario(nuevousuario);
+       
     }
     public ArrayList<Usuario> obtenerlista()
     {ArrayList<Usuario> r=new ArrayList();

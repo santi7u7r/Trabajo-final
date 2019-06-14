@@ -8,6 +8,7 @@ package aplicacion.dao.imp;
 import aplicacion.dao.ClienteDAO;
 import aplicacion.hibernate.configuracion.Hibernateutil;
 import aplicacion.modelo.dominio.Cliente;
+import java.io.Serializable;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 
@@ -15,7 +16,7 @@ import org.hibernate.Session;
  *
  * @author José Luis
  */
-public class ClienteDAOImp implements ClienteDAO {
+public class ClienteDAOImp implements ClienteDAO, Serializable {
 
     @Override
     public void crearCliente(Cliente cliente) {

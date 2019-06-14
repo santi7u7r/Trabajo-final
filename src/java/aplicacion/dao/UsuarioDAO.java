@@ -13,10 +13,10 @@ import java.util.ArrayList;
  * @author José Luis
  */
 public interface UsuarioDAO {
-    void crearUsuario(Usuario usuario);
-    void borrarUsuario(Usuario usuario);
-    Usuario validarUsuario(String nombreUsuario, String password);
-    Usuario obtenerUsuario(String nombreUsuario);
-    void modificarUsuario(Usuario usuario);
+    public void crearUsuario(Usuario usuario);
+    public void borrarUsuario(Usuario usuario);// franco daun no pusiste public. por eso los beans no podian acceder y estaba bien.
+    public Usuario validarUsuario(String nombreUsuario, String password);
+    public Usuario obtenerUsuario(String nombreUsuario);
+   public  void modificarUsuario(Usuario usuario);
     public ArrayList<Usuario> Listausuario();
 }

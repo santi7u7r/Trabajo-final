@@ -8,6 +8,7 @@ package aplicacion.dao.imp;
 import aplicacion.dao.UsuarioDAO;
 import aplicacion.hibernate.configuracion.Hibernateutil;
 import aplicacion.modelo.dominio.Usuario;
+import java.io.Serializable;
 import java.util.ArrayList;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -18,7 +19,7 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author José Luis
  */
-public class UsuarioDAOImp implements UsuarioDAO {
+public class UsuarioDAOImp implements UsuarioDAO, Serializable {
 
     @Override
     public Usuario validarUsuario(String nombreUsuario, String password) {
@@ -74,6 +75,7 @@ public class UsuarioDAOImp implements UsuarioDAO {
         session.save(usuario);
         session.getTransaction().commit();
         session.close();
+         System.out.println("aaaaaaaaa");
         
     }
 

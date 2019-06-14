@@ -8,6 +8,7 @@ package aplicacion.dao.imp;
 import aplicacion.dao.ProductoDAO;
 import aplicacion.hibernate.configuracion.Hibernateutil;
 import aplicacion.modelo.dominio.Producto;
+import java.io.Serializable;
 import org.hibernate.Session;
 
 
@@ -15,7 +16,7 @@ import org.hibernate.Session;
  *
  * @author José Luis
  */
-public class ProductoDAOImp implements ProductoDAO {
+public class ProductoDAOImp implements ProductoDAO, Serializable {
 
     @Override
     public void crearProducto(Producto producto) {

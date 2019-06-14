@@ -7,6 +7,7 @@ package aplicacion.beans;
 
 import aplicacion.modelo.dominio.Cliente;
 import aplicacion.modelo.dominio.Usuario;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.faces.application.FacesMessage;
@@ -21,8 +22,8 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class UsuarioFormbean {
- @ManagedProperty(value="#{usuariobean}")
+public class UsuarioFormbean implements Serializable {
+ @ManagedProperty(value="#{UsuarioBean}")
  private UsuarioBean usuariobean;
     private Cliente uncliente;//contiene los atributos de un cliente. para que no haya confunciones en la vista
     private Usuario unusuario;//contiene los atributos de un usuario. el usuario admin esta cargado por defecto.
@@ -57,10 +58,11 @@ public class UsuarioFormbean {
         getUnusuario().setTipoUsuario("Cliente");// esto esta predefinido ya que solo habra un solo administrador. y las demas cuentas seran clientes unicamente
         getUnusuario().setCliente(getUncliente());// ya que las tablas se encuentran relacionas. debido a que existe un atributo en la clase usuario que es del tipo cliente. 
         getUnusuario().setCodigo(codigo);// espero que lo entiendas cuando vayas hacer la vista.
-      try
+        System.out.println("aaaaaaaaa");
+        try
       {
           getUsuariobean().agregaruser(getUnusuario());
-          obtenerlista();//esto nos ayudara a actualizar la lista exclusiva para el administrador. sinceramente nose me ocurrio otra idea.  espero que el profe nos ayude :(
+        //esto nos ayudara a actualizar la lista exclusiva para el administrador. sinceramente nose me ocurrio otra idea.  espero que el profe nos ayude :(
           FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_INFO,"Se cargo correctamente el usuario",":)"+ getUnusuario().getApellidos()); 
           FacesContext.getCurrentInstance().addMessage(null, facesmessage);// para mostrar mensaje
       }
