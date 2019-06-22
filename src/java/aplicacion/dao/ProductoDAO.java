@@ -12,8 +12,8 @@ import aplicacion.modelo.dominio.Producto;
  * @author José Luis
  */
 public interface ProductoDAO {
-    void crearProducto(Producto producto);
-    void borrarProducto(Producto producto);
-    void modificarProducto(Producto producto);
+   public  void crearProducto(Producto producto);
+    public void borrarProducto(Producto producto);
+   public void modificarProducto(Producto producto);
     
 }

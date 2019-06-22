@@ -32,6 +32,7 @@ public class UsuarioFormbean implements Serializable {
     private Usuario usuarioactivo;
     @ManagedProperty(value="#{r}")
     private UsuarioBean r;
+    
     /**
      * Creates a new instance of UsuarioFormbean
      */
@@ -45,25 +46,38 @@ public class UsuarioFormbean implements Serializable {
     {
         r=new UsuarioBean();
          g=new ArrayList();
+         usuarioactivo=new Usuario();
     }
     public String validarusuario()
-    {String t=null;// aqui pone el nombre de la pagina cuando no se encuentre al usuario
+    {
+        String t="welcomePrimefaces?faces-redirect=true";// aqui pone el nombre de la pagina cuando no se encuentre al usuario
     setUsuarioactivo(getR().validacion_user(getNombre(), getPass()));
-        if(getUsuarioactivo()!=null)
-        {
-            t= "nombrepagina" ;// aqui pone el nombre de la pagina cuando se encuentre al usuario
-            
-        }
-        return t;
+         if( getUsuarioactivo()!=null)
+         {
+             if(getUsuarioactivo().getTipoUsuario().equals("Admin"))
+             {
+                 t="prueba?faces-redirect=true";
+             }
+             else
+             {
+                 t="VistAdmingg?faces-redirect=true";
+                 obtenerlista();
+                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("UsuarioValidado",usuarioactivo);
+             }
+         }
+          
+       
+       
+       return t;
     }
     public void altadeusuario()
     {//agregar usuario;
         Random aleatorio = new Random(System.currentTimeMillis());// clase de java para generar numeros aleatorios
-        int codigo = aleatorio.nextInt(100);// del 0 al 99
+        int codigo =(int) aleatorio.nextInt(100);// del 0 al 99
         getUnusuario().setEstado(true);//estos campos no se piden en la vista. ya que al crearse la cuenta, su estado cambiaria a verdadero.
         getUnusuario().setTipoUsuario("Cliente");// esto esta predefinido ya que solo habra un solo administrador. y las demas cuentas seran clientes unicamente
         getUnusuario().setCliente(getUncliente());// ya que las tablas se encuentran relacionas. debido a que existe un atributo en la clase usuario que es del tipo cliente. 
-        getUnusuario().setCodigo(678);// espero que lo entiendas cuando vayas hacer la vista.
+        getUnusuario().setCodigo(codigo);// espero que lo entiendas cuando vayas hacer la vista.
         
       try
       {
@@ -91,7 +105,15 @@ public class UsuarioFormbean implements Serializable {
         // hacerlo y los datos que se cambien se recibiraan a aqui. como en el tp 4 en Modificar libro. revisar tp4(nombre del archivo"porultimaveztp4"
         getR().modificarusuariobean(usuario2);
     }
-
+public void obtenerlista()
+{
+   
+    setG(getR().obtenerlistado());
+     for (int i=0;i<getG().size();i++)
+    {
+        System.out.println(getG().get(i).getNombreUsuario());
+    }
+}
     /**
      * @return the uncliente
      */
