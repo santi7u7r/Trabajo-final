@@ -16,13 +16,11 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 import org.primefaces.validate.ClientValidator;
-
 /**
  *
  * @author gustso
  */
 @FacesValidator("emailValidator")// ya esta agregado el email validador para que lo usen en la vista
-
 public class EmailValidator implements Validator, ClientValidator {
  
     private Pattern pattern;

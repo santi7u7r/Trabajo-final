@@ -18,7 +18,7 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class ProductoFormBean {
- @ManagedProperty (value="Productobean")
+ @ManagedProperty (value="#{Productobean}")
  private ProductoBean Productobean;
  private Producto u;
  private ArrayList<Producto> listapro;
