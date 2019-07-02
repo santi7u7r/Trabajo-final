@@ -73,11 +73,11 @@ public class UsuarioFormbean implements Serializable {
     public void altadeusuario()
     {//agregar usuario;
         Random aleatorio = new Random(System.currentTimeMillis());// clase de java para generar numeros aleatorios
-        int codigo =(int) aleatorio.nextInt(100);// del 0 al 99
+        int codigo =(int) aleatorio.nextInt(10000);// del 0 al 99
         getUnusuario().setEstado(true);//estos campos no se piden en la vista. ya que al crearse la cuenta, su estado cambiaria a verdadero.
         getUnusuario().setTipoUsuario("Cliente");// esto esta predefinido ya que solo habra un solo administrador. y las demas cuentas seran clientes unicamente
         getUnusuario().setCliente(getUncliente());// ya que las tablas se encuentran relacionas. debido a que existe un atributo en la clase usuario que es del tipo cliente. 
-        getUnusuario().setCodigo(codigo);// espero que lo entiendas cuando vayas hacer la vista.
+        getUnusuario().setCodigo(6);// espero que lo entiendas cuando vayas hacer la vista.
         
       try
       {

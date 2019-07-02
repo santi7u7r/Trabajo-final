@@ -9,7 +9,10 @@ import aplicacion.dao.ProductoDAO;
 import aplicacion.hibernate.configuracion.Hibernateutil;
 import aplicacion.modelo.dominio.Producto;
 import java.io.Serializable;
+import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 
 /**
@@ -43,6 +46,16 @@ public class ProductoDAOImp implements ProductoDAO, Serializable {
         session.update(producto);
         session.getTransaction();
         session.close();
+    }
+
+    @Override
+    public List<Producto> obtenerTodos() {
+       Session session = Hibernateutil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Producto.class);
+        criteria.add(Restrictions.eq("estado", true));// restricion crea filtros. promero escribo cual es atributo que voy comparar y despues el valo al que debe ser igual para que liste los productos
+        List<Producto> productos = criteria.list();
+        session.close();
+        return productos;
     }
      
      
