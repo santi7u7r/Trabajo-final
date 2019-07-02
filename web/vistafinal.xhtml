@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:panel header="Lista de productos comprados">
+            <h:form enctype="multipart/form-data">
+                <p:panelGrid columns="9" >
+                    <p:dataTable emptyMessage="No se selecciono nada" var="1" > 
+                        <p:column headerText="Producto">
+                            <p:outputLabel value="1 juguete"/>
+                        </p:column>
+                        <p:column headerText="Categoria">
+                        </p:column>
+                        <p:column headerText="Precio">
+                     
+                        </p:column>
+                        <p:column headerText="Cantidad">
+                            <p:spinner min="0" max="10"/>
+                        </p:column>
+                        <p:column headerText="Total Producto">
+                            
+                        </p:column>
+
+                        <p:column headerText="Comprar">
+                            <p:selectBooleanCheckbox id="Seleccionar"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:panelGrid>
+            </h:form>
+        </p:panel>
+        <p:commandLink id="link" value="Pagar productos" 
+                               update=":altaus"
+                               oncomplete="PF('Agregar').show()"/>
+        <p:dialog id="altaus" 
+                  header="Confirmar Compra" widgetVar="Agregar"
+                  resizable="false" modal="true" height="200" >
+                <h:form id="frmAltaUs">
+                    <p:panelGrid columns="3">
+                        <p:dataTable value="Confirmacion de compra" var="v" >
+                            <p:column headerText="producto">
+                                
+                            </p:column>
+                       
+                            <p:column headerText="Cantidad">
+                                
+                            </p:column>
+                        
+                            <p:column headerText="Total del producto">
+                                
+                            </p:column>
+                             
+                        </p:dataTable>     
+                    </p:panelGrid>
+                    <p:panelGrid columns="2">
+                                <p:outputLabel value="Forma  de  pago   "/>                               
+                                <p:selectOneMenu value="Hola" >
+                                    <f:selectItem itemLabel="Seleccione metodo" itemValue="#{null}" noSelectionOption="True"/>
+                                    <f:selectItem itemLabel="Tarjeta" itemValue="#{null}" noSelectionOption="true" />
+                                    <f:selectItem itemLabel="Efectivo"  />
+                                    <f:selectItems value="holaa"/>
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Cantidad de cuotas     "/>
+                                <p:spinner value="0" min="0" max="12"/>
+                            <p:commandButton id="btn" value="Confirmar compra"
+                                         oncomplete="PF('Agregar').hide()"/>
+                            <p:commandButton value="Salir" oncomplete="PF('Salir').hide()"/>
+                    </p:panelGrid>
+                </h:form>
+        </p:dialog>
+    </h:body>
+</html>
