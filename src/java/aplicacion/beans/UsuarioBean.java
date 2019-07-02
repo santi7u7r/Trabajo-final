@@ -9,7 +9,6 @@ import aplicacion.dao.ClienteDAO;
 import aplicacion.dao.UsuarioDAO;
 import aplicacion.dao.imp.ClienteDAOImp;
 import aplicacion.dao.imp.UsuarioDAOImp;
-import aplicacion.modelo.dominio.Cliente;
 import aplicacion.modelo.dominio.Usuario;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
@@ -36,6 +35,10 @@ public class UsuarioBean {
     public void agregar(Usuario b)
     {
         getClienteDAO().crearUsuario(b);
+    }
+    public ArrayList<Usuario> obtenerlistado()
+    {
+        return getClienteDAO().obtenerlista();
     }
        public void borrado(Usuario a)
     {

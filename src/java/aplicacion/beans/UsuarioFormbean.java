@@ -16,6 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.PrimeFaces;
 
 /**
  *
@@ -44,17 +45,24 @@ public class UsuarioFormbean implements Serializable {
     public void init()
     {
         r=new UsuarioBean();
-         g=new ArrayList();
+         g=getR().obtenerlistado();
     }
     public String validarusuario()
-    {String t=null;// aqui pone el nombre de la pagina cuando no se encuentre al usuario
+    {String t="welcomePrimefaces?faces-redirect=true";// aqui pone el nombre de la pagina cuando no se encuentre al usuario
     setUsuarioactivo(getR().validacion_user(getNombre(), getPass()));
-        if(getUsuarioactivo()!=null)
-        {
-            t= "nombrepagina" ;// aqui pone el nombre de la pagina cuando se encuentre al usuario
-            
-        }
-        return t;
+         if( getUsuarioactivo()!=null)
+         {
+             if(getUsuarioactivo().getTipoUsuario().equals("Admin"))
+             {
+                 t="prueba?faces-redirect=true";
+             }
+             else
+             {
+                 t="VistAdmingg?faces-redirect=true";
+         
+             }
+         }
+       return t;
     }
     public void altadeusuario()
     {//agregar usuario;
@@ -63,7 +71,7 @@ public class UsuarioFormbean implements Serializable {
         getUnusuario().setEstado(true);//estos campos no se piden en la vista. ya que al crearse la cuenta, su estado cambiaria a verdadero.
         getUnusuario().setTipoUsuario("Cliente");// esto esta predefinido ya que solo habra un solo administrador. y las demas cuentas seran clientes unicamente
         getUnusuario().setCliente(getUncliente());// ya que las tablas se encuentran relacionas. debido a que existe un atributo en la clase usuario que es del tipo cliente. 
-        getUnusuario().setCodigo(868);// espero que lo entiendas cuando vayas hacer la vista.
+        getUnusuario().setCodigo(codigo);// espero que lo entiendas cuando vayas hacer la vista.
         
       try
       {
@@ -77,6 +85,7 @@ public class UsuarioFormbean implements Serializable {
           FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al cargar",":("+ getUnusuario().getApellidos()); 
           FacesContext.getCurrentInstance().addMessage(null, facesmessage);
       }
+      setUnusuario(new Usuario());
       // para limpiar los campos cuando se termine de cargar un usuario
     }
     public void bajadeusuario(Usuario usuario1)
@@ -84,7 +93,10 @@ public class UsuarioFormbean implements Serializable {
     getR().borrado(usuario1);
   
     }
-    
+    public void obtenerlista()
+    {
+        setG(getR().obtenerlistado());
+    }
     public void modificacion(Usuario usuario2)
     {
          // este procedimiento recibira el usuario que haya elegido el administrador al aser click en el icono(segun mi imaginacion). ya que para mostrar un usuario se uso una variable para
