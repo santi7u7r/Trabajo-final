@@ -9,6 +9,7 @@ import aplicacion.dao.ClienteDAO;
 import aplicacion.dao.UsuarioDAO;
 import aplicacion.dao.imp.ClienteDAOImp;
 import aplicacion.dao.imp.UsuarioDAOImp;
+import aplicacion.modelo.dominio.Cliente;
 import aplicacion.modelo.dominio.Usuario;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
@@ -22,12 +23,14 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class UsuarioBean {
      private UsuarioDAO clienteDAO;
-        private ClienteDAO UsuarioDAO;
+        private Usuario a;
+        ClienteDAO UsuarioDAO;
     /**
      * Creates a new instance of NewJSFManagedBean
      */
     public UsuarioBean() {
         clienteDAO=new UsuarioDAOImp();
+        a=new Usuario();
         UsuarioDAO= new ClienteDAOImp();
     }
     public void agregar(Usuario b)
@@ -46,10 +49,6 @@ public class UsuarioBean {
     {
         return getClienteDAO().validarUsuario(nombre, pass);
     }
-    public ArrayList<Usuario> obtenerlistado()
-    {
-        return getClienteDAO().obtenerlista();
-    }
 
     /**
      * @return the clienteDAO
@@ -64,17 +63,18 @@ public class UsuarioBean {
     public void setClienteDAO(UsuarioDAO clienteDAO) {
         this.clienteDAO = clienteDAO;
     }
+
     /**
-     * @return the UsuarioDAO
+     * @return the a
      */
-    public ClienteDAO getUsuarioDAO() {
-        return UsuarioDAO;
+    public Usuario getA() {
+        return a;
     }
 
     /**
-     * @param UsuarioDAO the UsuarioDAO to set
+     * @param a the a to set
      */
-    public void setUsuarioDAO(ClienteDAO UsuarioDAO) {
-        this.UsuarioDAO = UsuarioDAO;
+    public void setA(Usuario a) {
+        this.a = a;
     }
 }

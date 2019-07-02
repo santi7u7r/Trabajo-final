@@ -13,9 +13,8 @@ import java.util.List;
  * @author José Luis
  */
 public interface ProductoDAO {
-   public  void crearProducto(Producto producto);
+    public void crearProducto(Producto producto);
     public void borrarProducto(Producto producto);
-   public void modificarProducto(Producto producto);
+    public void modificarProducto(Producto producto);
     public List<Producto> obtenerTodos();
-    
 }

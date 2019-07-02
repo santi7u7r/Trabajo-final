@@ -18,8 +18,6 @@ public class Producto  implements java.io.Serializable {
      private Integer stock;
      private Set detalles = new HashSet(0);
      private boolean estado;
-     private byte[] foto; 
-
     public Producto() {
     }
 
@@ -79,14 +77,6 @@ public class Producto  implements java.io.Serializable {
     public void setDetalles(Set detalles) {
         this.detalles = detalles;
     }
-    /**
-     * @return the foto
-     */
-    public byte[] getFoto() {
-        return foto;
-    }
-
-
     /**
      * @return the estado
      */

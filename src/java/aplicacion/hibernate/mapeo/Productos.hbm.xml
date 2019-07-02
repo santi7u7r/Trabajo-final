@@ -19,9 +19,6 @@
     <property name="stock" type="java.lang.Integer">
       <column name="stock"/>
     </property>
-     <property name="foto" type="java.byte">
-      <column name="foto"/>
-    </property>
      <property name="estado" type="java.lang.Boolean">
       <column name="estado"/>
     </property>

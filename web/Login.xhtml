@@ -16,7 +16,7 @@
                     <p:inputText id="lbl" value="#{usuarioFormbean.nombre}" required="true"/> 
                     <p:outputLabel id="tbl2" value="Ingrese Contraseña"/>
                     <p:inputText id="lbl2" value="#{usuarioFormbean.pass}" required="true"/>
-                    <p:commandButton id="btn" value="Ingresar" action="#{usuarioFormbean.validarusuario()}" update="mensaje"/>
+                    <p:commandButton id="btn" value="Ingresar" actionListener="#{usuarioFormbean.validarusuario()}" update="mensaje"/>
                                <p:commandLink id="link" value="Crear Cuenta" 
                                
                                oncomplete="PF('Agregar').show()"/>
@@ -26,7 +26,7 @@
         
         <p:dialog id="altaus" 
                   header="Crear cuenta" widgetVar="Agregar"
-                  resizable="false" modal="true" showEffect="pulsate" hideEffect="shake" height="290" >
+                  resizable="false" modal="true" showEffect="pulsate" hideEffect="shake" height="450" >
                 <h:form id="frmAltaUs">
                     <p:panelGrid columns="2">
                         <p:outputLabel value="NombreUsuario"/>
@@ -39,8 +39,18 @@
                         <p:inputText value="#{usuarioFormbean.unusuario.password}" required="true"/>
                         <p:outputLabel value="Denei"/>
                         <p:inputNumber value="#{usuarioFormbean.uncliente.dni}" decimalPlaces="0"/>
+                        <p:outputLabel value="Domicilio"/>
+                        <p:inputText value="#{usuarioFormbean.uncliente.domicilio}"/>
+                        <p:outputLabel value="Fec Nac" for="txt1fecha"/>
+                        <p:calendar id="txt1fecha" value="#{usuarioFormbean.uncliente.fechaNac}" label="txt1fecha" required="true" />
                         <p:outputLabel value="Mei"/>
                         <p:inputText value="#{usuarioFormbean.uncliente.mail}"/>
+                        <p:outputLabel value="Provincia"/>
+                        <p:inputText value="#{usuarioFormbean.uncliente.provincia}"/>
+                        <p:outputLabel value="Telefeme"/>
+                        <p:inputNumber value="#{usuarioFormbean.uncliente.telefono}"/>
+                        
+                                     
                         <p:commandButton id="btn" value="Listo" actionListener="#{usuarioFormbean.altadeusuario()}"
                                          oncomplete="PF('Agregar').hide()" update=":form:mensaje"/>
                     </p:panelGrid>
@@ -57,4 +67,3 @@
             </p:confirmDialog>
     </h:body>
 </html>
-

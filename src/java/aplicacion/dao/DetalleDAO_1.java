@@ -5,14 +5,15 @@
  */
 package aplicacion.dao;
 
-import aplicacion.modelo.dominio.Cliente;
+import aplicacion.modelo.dominio.Detalle;
 
 /**
  *
  * @author José Luis
  */
-public interface ClienteDAO {
-    public void crearCliente(Cliente cliente);
-    public void borrarCliente(Cliente cliente);
-    public void modificarCliente(Cliente cliente);
+public interface DetalleDAO_1 {
+    void crearDetalle(Detalle detalle);
+    void borrarDetalle(Detalle detalle);
+    void modificarDetalle(Detalle detalle);
+    
 }
