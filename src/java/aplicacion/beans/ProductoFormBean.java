@@ -7,9 +7,14 @@ package aplicacion.beans;
 
 import aplicacion.modelo.dominio.Producto;
 import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -21,18 +26,42 @@ public class ProductoFormBean {
  @ManagedProperty (value="#{Productobean}")
  private ProductoBean Productobean;
  private Producto u;
- private ArrayList<Producto> listapro;
+ private List<Producto> listapro;
+ private transient UploadedFile archivo=null;
     /**
      * Creates a new instance of ProductoFormBean
      */
     public ProductoFormBean() { 
-        Productobean=new ProductoBean();
         listapro=new ArrayList();
         u= new Producto();
     }
+    @PostConstruct
+    public void iniciar()
+    {listapro=new ArrayList();
+        setListapro(getProductobean().obtenerlistado());// c inicializan despues de que crea el bean
+    }
     public void agregar()
     {
-        getProductobean().agregarproduc(getU());
+       if(getArchivo()!=null)
+       {
+           byte [] contents = getArchivo().getContents();
+           getU().setFoto(contents);
+       }
+       else
+       {
+           getU().setFoto(null);
+       }
+       try{
+            getProductobean().agregarproduc(getU());
+            FacesMessage facesmenssage = new FacesMessage(FacesMessage.SEVERITY_INFO," Producto agregado correctamente", "producto"+ getU().getDescripcion());
+            FacesContext.getCurrentInstance().addMessage(null, facesmenssage);
+       }catch (Exception e)
+       {
+             FacesMessage facesmenssage = new FacesMessage(FacesMessage.SEVERITY_ERROR," Error al cargarlo", "vuelva a intentarlo mas tarde :( ");
+            FacesContext.getCurrentInstance().addMessage(null, facesmenssage);
+       }
+       
+       
     }
     public void borrar()
     {
@@ -41,6 +70,10 @@ public class ProductoFormBean {
     public void modificar(Producto y)
     {
         getProductobean().modificarproduct(y);
+    }
+    public void obtenerlista()
+    {
+        setListapro(getProductobean().obtenerlistado());
     }
     /**
      * @return the Productobean
@@ -73,15 +106,22 @@ public class ProductoFormBean {
     /**
      * @return the listapro
      */
-    public ArrayList<Producto> getListapro() {
+    public List<Producto> getListapro() {
         return listapro;
     }
 
     /**
      * @param listapro the listapro to set
      */
-    public void setListapro(ArrayList<Producto> listapro) {
+    public void setListapro(List<Producto> listapro) {
         this.listapro = listapro;
+    }
+    public UploadedFile getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(UploadedFile archivo) {
+        this.archivo = archivo;
     }
     
 }

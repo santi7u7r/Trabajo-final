@@ -22,6 +22,9 @@
      <property name="estado" type="java.lang.Boolean">
       <column name="estado"/>
     </property>
+     <property name="foto" type="byte[]">
+      <column name="foto"/>
+    </property>
     <set fetch="select" inverse="true" lazy="true" name="detalles" table="detalle">
       <key>
         <column name="productos_codProducto" not-null="true"/>

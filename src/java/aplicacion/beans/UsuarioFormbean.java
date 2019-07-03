@@ -89,9 +89,16 @@ public class UsuarioFormbean implements Serializable {
       // para limpiar los campos cuando se termine de cargar un usuario
     }
     public void bajadeusuario(Usuario usuario1)
+    {try {
+        getR().borrado(usuario1);
+          FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_INFO,"Se agrego con exito ","Ahora el usuario "+ getUnusuario().getApellidos()+ " es parte de nuestro sistema" ); 
+          FacesContext.getCurrentInstance().addMessage(null, facesmessage);
+    }catch(Exception e)
     {
-    getR().borrado(usuario1);
+   FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_ERROR,"Hubo un problema ..."," error x000000.1 :("); 
+          FacesContext.getCurrentInstance().addMessage(null, facesmessage);
   
+    }
     }
     public void obtenerlista()
     {
