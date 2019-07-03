@@ -12,11 +12,12 @@
                 <p:growl id="mensaje" showDetail="true">
                 </p:growl>
                 <p:panelGrid columns="2">
-                    <p:outputLabel id="tbl" value="Ingrese Usuario"/>
+                    <p:outputLabel for="lbl" value="Ingrese Usuario"/>
                     <p:inputText id="lbl" value="#{usuarioFormbean.nombre}" required="true"/> 
-                    <p:outputLabel id="tbl2" value="Ingrese Contraseña"/>
-                    <p:inputText id="lbl2" value="#{usuarioFormbean.pass}" required="true"/>
-                    <p:commandButton id="btn" value="Ingresar" action="#{usuarioFormbean.validarusuario()}" update="mensaje" resetValues="true"/>
+                    <p:outputLabel for="lbl2" value="Ingrese Contraseña"/>
+                    <p:password id="lbl2" value="#{usuarioFormbean.pass}" required="true"/>
+                    <p:commandButton id="btn" value="Ingresar" action="#{usuarioFormbean.validarusuario()}" 
+                                     update="mensaje" resetValues="true" />
                                <p:commandLink id="link" value="Crear Cuenta" 
                                
                                oncomplete="PF('Agregar').show()"/>

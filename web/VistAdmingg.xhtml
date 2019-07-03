@@ -9,6 +9,7 @@
     <h:body style="background-color: black !important">
         <h:form id="frm1">
             <p:panel header="Usuarios Ingresados" >
+                <p:linkButton value="Crear Productos" outcome="Creacion" id="linkpag"/>
                 <p:panelGrid columns="5">
                     <p:dataTable id="tabla" value="#{usuarioFormbean.g}" emptyMessage="Nada" var="us">
                         <p:column headerText="Nombre Usuario">
@@ -16,6 +17,9 @@
                         </p:column>
                         <p:column headerText="Nombre">
                             <p:outputLabel value="#{us.nombres}"/>
+                        </p:column>
+                        <p:column headerText="Apellido">
+                            <p:outputLabel value="#{us.apellidos}"/>
                         </p:column>
                         <p:column headerText="Tipo de Usuario">
                             <p:outputLabel value="#{us.tipoUsuario}"/>
@@ -27,15 +31,34 @@
                             <p:outputLabel value="#{us.estado}"/>
                         </p:column>
                         <p:column headerText="Modificar">
-                            <p:commandButton value="Eliminar"/>
+                            <p:commandButton value="Eliminar" actionListener="#{usuarioFormbean.bajadeusuario(us)}" update=":frm1:tabla"/>
                             <p/>
-                            <p:commandButton value="Modificar"/>
+                            <p:commandButton value="Modificar" id="btn00" 
+                                             oncomplete="PF('ModificarUs').show()"/>
                             <p/>
                         </p:column>
                     </p:dataTable>         
                 </p:panelGrid>
             </p:panel>
-        </h:form>       
+        </h:form>
+        <p:dialog id="modificar"
+                  resizable="false" modal="true" showEffect="explode" hideEffect="explode" height="300"
+                  header="Modificar User" widgetVar="ModificarUs">
+            <h:form id="modifiacion">
+                <p:panelGrid id="tblmodicus" columns="2">
+                    <p:outputLabel value="UserName"/>
+                    <p:inputText value="#{usuarioFormbean.usuarioactivo.nombreUsuario}"/>
+                    <p:outputLabel value="Contraseña"/>
+                    <p:password value="#{usuarioFormbean.usuarioactivo.password}"/>
+                    <p:outputLabel value="Apellido"/>
+                    <p:inputText value="#{usuarioFormbean.usuarioactivo.apellidos}"/>
+                    <p:outputLabel value="Nombre"/>
+                    <p:inputText value="#{usuarioFormbean.usuarioactivo.apellidos}"/>
+                    <p:commandButton value="Mod" actionListener="#{usuarioFormbean.modificacion(us)}" update=":frm1:tabla"
+                                     oncomplete="PF('ModificarUs').hide()"/>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
     </h:body>
 </html>
 
