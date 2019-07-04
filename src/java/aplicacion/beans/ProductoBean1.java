@@ -5,10 +5,9 @@
  */
 package aplicacion.beans;
 
-import aplicacion.dao.DetalleDAO;
 import aplicacion.dao.ProductoDAO;
-import aplicacion.dao.imp.DetalleDAOImp;
 import aplicacion.dao.imp.ProductoDAOImp;
+import aplicacion.modelo.dominio.Categoria;
 import aplicacion.modelo.dominio.Producto;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
@@ -22,13 +21,13 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class ProductoBean1 {
     private ProductoDAO productodao;
-    DetalleDAO detalledao;
+
     /**
      * Creates a new instance of ProductoBean1
      */
     public ProductoBean1() {
     productodao=new ProductoDAOImp();
-    detalledao=new DetalleDAOImp();
+  
     }
     public void agregar(Producto a)
     {
@@ -38,7 +37,6 @@ public class ProductoBean1 {
     {
         return getProductodao().obtenerTodos();
     }
-
     /**
      * @return the productodao
      */
@@ -52,6 +50,5 @@ public class ProductoBean1 {
     public void setProductodao(ProductoDAO productodao) {
         this.productodao = productodao;
     }
-    
-    
+
 }

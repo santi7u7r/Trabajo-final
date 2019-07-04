@@ -12,12 +12,12 @@
             <p:panel id="pnlProductos">
                 <p:growl id="msgs" showDetail="true">
                     <h:form id="form" enctype="multipart/form-data">
-                        <p:commandButton id="btnAgregarProducto1" value="Agregar" oncomplete="PF('agregarProducto').show()" update="prod msgs" />
+                        <p:commandButton id="btnAgregarProducto1" value="Agregar" oncomplete="PF('agregarProducto').show()" update="prod"/>
                         <p:dataGrid var="prod" value="#{productoFormBean1.listoproducto}" columns="3" layout="grid" rows="12" paginator="true" id="prod">
                             <f:facet name="header">
                                 Productos a la venta
                             </f:facet>
-                            <p:panel header="Productos" style="text-align: center">
+                            <p:panel header="ventas" style="text-align: center">
                                 <p:panelGrid columns="1" style="width: 100%">
                                     <p:graphicImage value="" height="100px" width="100px">
                                         <f:param name="codProd" value=""/>
@@ -37,19 +37,19 @@
                 <h:form id="frmAltaProducto" enctype="multipart/form-data">
                     <p:panelGrid id="tblAltaProducto" columns="2">
                         <p:outputLabel value="Descripcion: "/>
-                        <p:inputText required="true"/>
+                        <p:inputText  value="#{productoFormBean1.pro1.descripcion}"required="true"/>
                         <p:outputLabel value="Precio: "/>
-                        <p:inputNumber required="true"/>
+                        <p:inputNumber  value="$#{productoFormBean1.pro1.precio}" decimalSeparator="," decimalPlaces="2" required="true"/>
                         <p:outputLabel value="Stock: "/>
-                        <p:inputText required="true"/>
+                        <p:inputText  value="#{productoFormBean1.pro1.stock}"required="true"/>
                         <p:outputLabel value="Categoria: "/>
-                        <p:selectOneMenu id="categorias" value="" converter="omnifaces.SelectItemsConverter">
+                        <p:selectOneMenu id="categorias" value="#{productoFormBean1.}" converter="omnifaces.SelectItemsConverter">
                             <f:selectItem itemLabel="Selecciona Categoria" itemValue="#{null}" noSelectionOption="true"/>
                             <f:selectItems value="" var="cat" itemLabel="" itemValue=""/>
                         </p:selectOneMenu>
                         <p:outputLabel value="Imagen: "/>
                         <p:fileUpload id="foto" value="" mode="simple"/>
-                        <p:commandButton id="btnAgregarProducto" value="Agregar Producto"  update=":form:msgs" ajax="false" oncomplete="PF('agregarProducto').hide()"/>
+                        <p:commandButton id="btnAgregarProducto" value="Agregar Producto"  actionListener="#{productoFormBean1.}" update=":form:msgs" ajax="false" oncomplete="PF('agregarProducto').hide()"/>
                         <p:commandButton id="btnCerrarProducto" value="Salir" oncomplete="PF('agregarProducto').hide()"/>
                     </p:panelGrid>
                 </h:form>

@@ -10,7 +10,7 @@
         <h:form id="frm1">
             <p:growl id="newmensaje" showDetail="true"/>
             <p:panel header="Usuarios Ingresados" >
-                <p:commandButton id="btn"   value="Crear Productos"  action="ff" />
+                <p:commandButton id="linkpag" value="Crear Productos"  action="ff" />
                 <p:panelGrid columns="5">
                     <p:dataTable id="tabla" value="#{usuarioFormbean.g}" emptyMessage="Nada" var="us">
                         <p:column headerText="Nombre Usuario">

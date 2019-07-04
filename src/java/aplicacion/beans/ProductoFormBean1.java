@@ -22,6 +22,8 @@ public class ProductoFormBean1 {
     private ArrayList<Producto> listoproducto;
     @ManagedProperty(value = "#{probean}")
     private ProductoBean1 probean;
+    private Producto Pro1;
+    
     /**
      * Creates a new instance of ProductoFormBean1
      */
@@ -60,6 +62,20 @@ public class ProductoFormBean1 {
      */
     public void setProbean(ProductoBean1 probean) {
         this.probean = probean;
+    }
+
+    /**
+     * @return the Pro1
+     */
+    public Producto getPro1() {
+        return Pro1;
+    }
+
+    /**
+     * @param Pro1 the Pro1 to set
+     */
+    public void setPro1(Producto Pro1) {
+        this.Pro1 = Pro1;
     }
             
     

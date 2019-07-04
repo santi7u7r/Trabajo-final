@@ -6,13 +6,16 @@
 package aplicacion.dao;
 
 import aplicacion.modelo.dominio.Categoria;
+import java.util.ArrayList;
 
 /**
  *
  * @author José Luis
  */
 public interface CategoriaDAO {
-        void crearCategoria(Categoria categoria);
-        void borrarCategoria(Categoria categoria);
-        void modificarCategoria(Categoria categoria);
+        public void crearCategoria(Categoria categoria);
+        public void borrarCategoria(Categoria categoria);
+        public void modificarCategoria(Categoria categoria);
+        public ArrayList<Categoria> obtenercat();
+        
 }

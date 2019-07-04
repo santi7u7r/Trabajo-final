@@ -8,8 +8,12 @@ package aplicacion.dao.imp;
 import aplicacion.dao.CategoriaDAO;
 import aplicacion.hibernate.configuracion.Hibernateutil;
 import aplicacion.modelo.dominio.Categoria;
+import aplicacion.modelo.dominio.Producto;
 import java.io.Serializable;
+import java.util.ArrayList;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 
 
@@ -49,6 +53,16 @@ public class CategoriaDAOImp implements CategoriaDAO, Serializable{
     session.update(categoria);
     session.getTransaction();
     session.close();
+    }
+
+    @Override
+    public ArrayList<Categoria> obtenercat() {
+Session session = Hibernateutil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Categoria.class);
+        criteria.add(Restrictions.eq("estado", true));// restricion crea filtros. promero escribo cual es atributo que voy comparar y despues el valo al que debe ser igual para que liste los productos
+        ArrayList<Categoria> categoria =(ArrayList) criteria.list();
+        session.close();
+        return categoria;   
     }
     
     

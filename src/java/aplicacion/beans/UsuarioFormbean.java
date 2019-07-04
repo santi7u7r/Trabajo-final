@@ -25,6 +25,20 @@ import org.primefaces.PrimeFaces;
 @ManagedBean
 @ViewScoped
 public class UsuarioFormbean implements Serializable {
+
+    /**
+     * @return the paises
+     */
+    public static String[] getPaises() {
+        return paises;
+    }
+
+    /**
+     * @param aPaises the paises to set
+     */
+    public static void setPaises(String[] aPaises) {
+        paises = aPaises;
+    }
   private Cliente uncliente;//contiene los atributos de un cliente. para que no haya confunciones en la vista
     private Usuario unusuario;//contiene los atributos de un usuario. el usuario admin esta cargado por defecto.
     private ArrayList<Usuario> g;// esto unicamente lo usara el administrador para dar baja a los usuario y mostrar en la vista. no se me ocurrio otra idea :(
@@ -34,6 +48,30 @@ public class UsuarioFormbean implements Serializable {
     private Usuario usuariomod;
     @ManagedProperty(value = "#{r}" )//inyeccion de beans
     private UsuarioBean r;
+    private static String[] paises;
+    static{
+         setPaises(new String[20]);
+         getPaises()[0]="Argentina";
+         getPaises()[1]="Bolivia";
+         getPaises()[2]="Brasil";
+         getPaises()[3]="Chile";
+         getPaises()[4]="Colombia";
+         getPaises()[5]="Cuba";  
+         getPaises()[6]="Costa Rica";
+         getPaises()[7]="Ecuador";
+         getPaises()[8]="El Salvador"; 
+         getPaises()[9]="Guatemala";
+         getPaises()[10]="haiti";
+         getPaises()[11]="Honduras";
+         getPaises()[12]="Mexico";
+         getPaises()[13]="Nicaragua";
+         getPaises()[14]="Panama";
+         getPaises()[15]="Paraguay";
+         getPaises()[16]="Peru";
+         getPaises()[17]="Republica Dominicana";
+         getPaises()[18]="Uruguay";
+         getPaises()[19]="Venezuela";   
+    }
     /**
      * Creates a new instance of UsuarioFormbean
      */
@@ -243,4 +281,5 @@ public class UsuarioFormbean implements Serializable {
     }
 
     
+   
 }
