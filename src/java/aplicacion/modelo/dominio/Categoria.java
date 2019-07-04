@@ -16,7 +16,8 @@ public class Categoria  implements java.io.Serializable {
      private String nombre;
      private String descripcion;
      private Set productos = new HashSet(0);
-
+             private int cantidadproduc;
+             private boolean estado;
     public Categoria() {
     }
 
@@ -62,16 +63,16 @@ public class Categoria  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Categoria{" + "idcategoria=" + idcategoria + ", nombre=" + nombre + ", descripcion=" + descripcion + ", productos=" + productos + '}';
+        return "Categoria{" + "idcategoria=" + getIdcategoria() + ", nombre=" + getNombre() + ", descripcion=" + getDescripcion() + ", productos=" + getProductos() + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 47 * hash + this.idcategoria;
-        hash = 47 * hash + Objects.hashCode(this.nombre);
-        hash = 47 * hash + Objects.hashCode(this.descripcion);
-        hash = 47 * hash + Objects.hashCode(this.productos);
+        hash = 47 * hash + this.getIdcategoria();
+        hash = 47 * hash + Objects.hashCode(this.getNombre());
+        hash = 47 * hash + Objects.hashCode(this.getDescripcion());
+        hash = 47 * hash + Objects.hashCode(this.getProductos());
         return hash;
     }
 
@@ -87,7 +88,7 @@ public class Categoria  implements java.io.Serializable {
             return false;
         }
         final Categoria other = (Categoria) obj;
-        if (this.idcategoria != other.idcategoria) {
+        if (this.getIdcategoria() != other.getIdcategoria()) {
             return false;
         }
         if (!Objects.equals(this.nombre, other.nombre)) {
@@ -100,6 +101,34 @@ public class Categoria  implements java.io.Serializable {
             return false;
         }
         return true;
+    }
+
+    /**
+     * @return the cantidadproduc
+     */
+    public int getCantidadproduc() {
+        return cantidadproduc;
+    }
+
+    /**
+     * @param cantidadproduc the cantidadproduc to set
+     */
+    public void setCantidadproduc(int cantidadproduc) {
+        this.cantidadproduc = cantidadproduc;
+    }
+
+    /**
+     * @return the estado
+     */
+    public boolean isEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
 

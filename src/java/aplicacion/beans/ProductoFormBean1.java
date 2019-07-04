@@ -7,10 +7,14 @@ package aplicacion.beans;
 
 import aplicacion.modelo.dominio.Producto;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -23,6 +27,7 @@ public class ProductoFormBean1 {
     @ManagedProperty(value = "#{probean}")
     private ProductoBean1 probean;
     private Producto Pro1;
+    private UploadedFile archivo=null;
     
     /**
      * Creates a new instance of ProductoFormBean1
@@ -31,11 +36,37 @@ public class ProductoFormBean1 {
         listoproducto=new ArrayList();
     }
     @PostConstruct
-    void init()
-    {setProbean(new ProductoBean1());
+    public void init()
+    { setProbean(new ProductoBean1());
        setListoproducto(getProbean().obtenerlista());
     }
-
+    public void agregar ()
+    { Random aleatorio = new Random(System.currentTimeMillis());// clase de java para generar numeros aleatorios
+        int codigo = (int) aleatorio.nextInt(100);
+        getPro1().setCodProducto(codigo);
+        getPro1().setEstado(true);
+        if(getArchivo()!=null)
+        {
+            byte[] contents = getArchivo().getContents();
+            getPro1().setFoto(contents);
+        }
+        else
+        {
+              getPro1().setFoto(null);
+        }
+        try
+        {
+            getProbean().agregar(getPro1());
+            setListoproducto(getProbean().obtenerlista());
+             FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_INFO,"Se cargo correctamente el producto"," :("+ getPro1().getDescripcion()); 
+          FacesContext.getCurrentInstance().addMessage(null, facesmessage);
+        }catch (Exception e)
+        {
+             FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_WARN,"HUBO UN PROBLEMA AL INTENTAR CARGAR"," :("+ getPro1().getDescripcion()); 
+          FacesContext.getCurrentInstance().addMessage(null, facesmessage);
+        }
+        setPro1(new Producto());
+    }
     /**
      * @return the listoproducto
      */
@@ -76,6 +107,20 @@ public class ProductoFormBean1 {
      */
     public void setPro1(Producto Pro1) {
         this.Pro1 = Pro1;
+    }
+
+    /**
+     * @return the archivo
+     */
+    public UploadedFile getArchivo() {
+        return archivo;
+    }
+
+    /**
+     * @param archivo the archivo to set
+     */
+    public void setArchivo(UploadedFile archivo) {
+        this.archivo = archivo;
     }
             
     

@@ -8,7 +8,6 @@ package aplicacion.dao.imp;
 import aplicacion.dao.CategoriaDAO;
 import aplicacion.hibernate.configuracion.Hibernateutil;
 import aplicacion.modelo.dominio.Categoria;
-import aplicacion.modelo.dominio.Producto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import org.hibernate.Criteria;
@@ -32,8 +31,9 @@ public class CategoriaDAOImp implements CategoriaDAO, Serializable{
     Session session= Hibernateutil.getSessionFactory().openSession();
     session.beginTransaction();
     session.save(categoria);
-    session.getTransaction().commit();;
+    session.getTransaction().commit();
     session.close();
+    System.out.println("c");
     }
     
 
@@ -59,7 +59,7 @@ public class CategoriaDAOImp implements CategoriaDAO, Serializable{
     public ArrayList<Categoria> obtenercat() {
 Session session = Hibernateutil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Categoria.class);
-        criteria.add(Restrictions.eq("estado", true));// restricion crea filtros. promero escribo cual es atributo que voy comparar y despues el valo al que debe ser igual para que liste los productos
+         Criteria add = criteria.add(Restrictions.like("estado",true));// restricion crea filtros. promero escribo cual es atributo que voy comparar y despues el valo al que debe ser igual para que liste los productos
         ArrayList<Categoria> categoria =(ArrayList) criteria.list();
         session.close();
         return categoria;   

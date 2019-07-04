@@ -7,7 +7,6 @@ package aplicacion.beans;
 
 import aplicacion.modelo.dominio.Cliente;
 import aplicacion.modelo.dominio.Usuario;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.annotation.PostConstruct;
@@ -16,7 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import org.primefaces.PrimeFaces;
+
 
 /**
  *
@@ -24,7 +23,7 @@ import org.primefaces.PrimeFaces;
  */
 @ManagedBean
 @ViewScoped
-public class UsuarioFormbean implements Serializable {
+public class UsuarioFormbean  {
 
     /**
      * @return the paises

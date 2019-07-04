@@ -13,6 +13,12 @@
     <property name="descripcion" type="string">
       <column length="45" name="descripcion"/>
     </property>
+    <property name="cantidadproduc" type="int">
+      <column  name="cantidadproduc"/>
+    </property>
+      <property name="estado" type="java.lang.Boolean">
+      <column  name="estado"/>
+    </property>
     <set fetch="select" inverse="true" lazy="true" name="productos" table="productos">
       <key>
         <column name="categorias_idcategoria" not-null="true"/>

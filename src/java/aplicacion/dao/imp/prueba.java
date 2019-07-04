@@ -5,8 +5,8 @@
  */
 package aplicacion.dao.imp;
 
+import aplicacion.dao.CategoriaDAO;
 import aplicacion.dao.DetalleDAO;
-import aplicacion.dao.ProductoDAO;
 import aplicacion.modelo.dominio.Categoria;
 import aplicacion.modelo.dominio.Producto;
 
@@ -17,17 +17,11 @@ import aplicacion.modelo.dominio.Producto;
 public class prueba {
     public static void main(String[] args) {
         DetalleDAO r=new DetalleDAOImp();
-        Producto e=new Producto();
-        Categoria i=new Categoria();
-        i.setDescripcion("es una cosa");
-        i.setNombre("jugetes");
-        i.setIdcategoria(6);
-        
-        e.setCodProducto(78);
-        e.setCategoria(null);
-        e.setEstado(true);
-        e.setPrecio(6.11);
-        e.setStock(8);
-      
+       
+        CategoriaDAO k=new CategoriaDAOImp();
+      for(int y=0;y<k.obtenercat().size();y++)
+      {
+          System.out.println(k.obtenercat().get(y).getNombre());
+      }
     }
 }
