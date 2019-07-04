@@ -3,6 +3,7 @@ package aplicacion.modelo.dominio;
 
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -57,6 +58,48 @@ public class Categoria  implements java.io.Serializable {
     
     public void setProductos(Set productos) {
         this.productos = productos;
+    }
+
+    @Override
+    public String toString() {
+        return "Categoria{" + "idcategoria=" + idcategoria + ", nombre=" + nombre + ", descripcion=" + descripcion + ", productos=" + productos + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + this.idcategoria;
+        hash = 47 * hash + Objects.hashCode(this.nombre);
+        hash = 47 * hash + Objects.hashCode(this.descripcion);
+        hash = 47 * hash + Objects.hashCode(this.productos);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Categoria other = (Categoria) obj;
+        if (this.idcategoria != other.idcategoria) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.descripcion, other.descripcion)) {
+            return false;
+        }
+        if (!Objects.equals(this.productos, other.productos)) {
+            return false;
+        }
+        return true;
     }
 
 

@@ -98,10 +98,10 @@ public class UsuarioDAOImp implements UsuarioDAO, Serializable {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(Usuario.class);
         Criterion Restriction;
-        Criteria add = criteria.add(Restrictions.eq("estado", true));
-        for(int i=0;i<criteria.list().size();i++)
+        Criteria add= criteria.add(Restrictions.eq("estado", true));
+        for(int i=0;i<add.list().size();i++)
         {
-            y.add((Usuario)criteria.list().get(i));
+            y.add((Usuario)add.list().get(i));
         }
         session.getTransaction().commit();
         session.close();

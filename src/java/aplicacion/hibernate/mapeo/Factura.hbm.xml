@@ -7,10 +7,10 @@
       <column name="numFactura"/>
       <generator class="assigned"/>
     </id>
-    <many-to-one class="aplicacion.modelo.dominio.Modopago" fetch="select" name="modopago">
+    <many-to-one class="aplicacion.modelo.dominio.Modopago" fetch="join" cascade="all" name="modopago">
       <column name="modoPago_idmodoPago" not-null="true"/>
     </many-to-one>
-    <many-to-one class="aplicacion.modelo.dominio.Usuario" fetch="join" name="usuario">
+    <many-to-one class="aplicacion.modelo.dominio.Usuario" fetch="join" cascade="all" name="usuario">
       <column name="usuarios_codigo" not-null="true"/>
     </many-to-one>
     <property name="fecha" type="timestamp">

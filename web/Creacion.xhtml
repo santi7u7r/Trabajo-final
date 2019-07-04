@@ -9,9 +9,9 @@
     <h:body>
         <p:panel header="Productos">
             <p:panelGrid columns="5">
-                <p:dataTable value="#{productoFormBean.listapro}" id="tblprod" emptyMessage="Sin Productos" var="prod">
+                <p:dataTable value="#{productoFormBean1.listoproducto}" id="tblprod" emptyMessage="Sin Productos" var="prod">
                     <p:column headerText="Category  ">
-                        <p:outputLabel value="#{prod.categoria}"/>
+                        <p:outputLabel value="#{prod.categoria.nombre}"/>
                     </p:column>
                     <p:column headerText="Codigo">
                         <p:outputLabel value="#{prod.codProducto}"/>

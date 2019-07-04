@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel id="pnlProductos">
+                <p:growl id="msgs" showDetail="true">
+                    <h:form id="form" enctype="multipart/form-data">
+                        <p:commandButton id="btnAgregarProducto1" value="Agregar" oncomplete="PF('agregarProducto').show()" update="prod msgs" />
+                        <p:dataGrid var="prod" value="#{productoFormBean1.listoproducto}" columns="3" layout="grid" rows="12" paginator="true" id="prod">
+                            <f:facet name="header">
+                                Productos a la venta
+                            </f:facet>
+                            <p:panel header="Productos" style="text-align: center">
+                                <p:panelGrid columns="1" style="width: 100%">
+                                    <p:graphicImage value="" height="100px" width="100px">
+                                        <f:param name="codProd" value=""/>
+                                    </p:graphicImage>
+                                    <h:outputText value=""/>
+                                    <p:commandLink oncomplete="PF('prodDialog').show()" title="Detalles">
+                                        <h:outputText value="detalles" style="margin: 0 auto;"/>
+                                        <f:setPropertyActionListener value="" target=""/>
+                                    </p:commandLink>
+                                </p:panelGrid>
+                            </p:panel>
+                        </p:dataGrid>
+                    </h:form>
+                </p:growl>
+            </p:panel>
+            <p:dialog id="dlgAltaProducto" widgetVar="agregarProducto" header="Agregar producto" resizable="false" showEffect="explode" hideEffect="explode" modal="true">
+                <h:form id="frmAltaProducto" enctype="multipart/form-data">
+                    <p:panelGrid id="tblAltaProducto" columns="2">
+                        <p:outputLabel value="Descripcion: "/>
+                        <p:inputText required="true"/>
+                        <p:outputLabel value="Precio: "/>
+                        <p:inputNumber required="true"/>
+                        <p:outputLabel value="Stock: "/>
+                        <p:inputText required="true"/>
+                        <p:outputLabel value="Categoria: "/>
+                        <p:selectOneMenu id="categorias" value="" converter="omnifaces.SelectItemsConverter">
+                            <f:selectItem itemLabel="Selecciona Categoria" itemValue="#{null}" noSelectionOption="true"/>
+                            <f:selectItems value="" var="cat" itemLabel="" itemValue=""/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Imagen: "/>
+                        <p:fileUpload id="foto" value="" mode="simple"/>
+                        <p:commandButton id="btnAgregarProducto" value="Agregar Producto"  update=":form:msgs" ajax="false" oncomplete="PF('agregarProducto').hide()"/>
+                        <p:commandButton id="btnCerrarProducto" value="Salir" oncomplete="PF('agregarProducto').hide()"/>
+                    </p:panelGrid>
+                </h:form>
+            </p:dialog>
+        </h:form>
+    </h:body>
+</html>

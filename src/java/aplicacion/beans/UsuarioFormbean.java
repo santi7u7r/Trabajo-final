@@ -31,7 +31,8 @@ public class UsuarioFormbean implements Serializable {
     private String nombre;//para la validacion 
     private String pass; //del usuario
     private Usuario usuarioactivo;
-    @ManagedProperty(value="#{r}")//inyeccion de beans
+    private Usuario usuariomod;
+    @ManagedProperty(value = "#{r}" )//inyeccion de beans
     private UsuarioBean r;
     /**
      * Creates a new instance of UsuarioFormbean
@@ -44,8 +45,8 @@ public class UsuarioFormbean implements Serializable {
     @PostConstruct
     public void init()
     {
-        r=new UsuarioBean();
-         g=getR().obtenerlistado();
+        setR(new UsuarioBean());
+         setG(getR().obtenerlistado());
     }
     public String validarusuario()
     {String t="welcomePrimefaces?faces-redirect=true";// aqui pone el nombre de la pagina cuando no se encuentre al usuario
@@ -76,6 +77,7 @@ public class UsuarioFormbean implements Serializable {
       try
       {
           getR().agregar(getUnusuario());
+          obtenerlista();
           FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_INFO,"SIN ERORES",":)"+ getUnusuario().getApellidos()); 
           FacesContext.getCurrentInstance().addMessage(null, facesmessage);
          
@@ -91,6 +93,7 @@ public class UsuarioFormbean implements Serializable {
     public void bajadeusuario(Usuario usuario1)
     {try {
         getR().borrado(usuario1);
+        
           FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_INFO,"Se agrego con exito ","Ahora el usuario "+ getUnusuario().getApellidos()+ " es parte de nuestro sistema" ); 
           FacesContext.getCurrentInstance().addMessage(null, facesmessage);
     }catch(Exception e)
@@ -104,11 +107,27 @@ public class UsuarioFormbean implements Serializable {
     {
         setG(getR().obtenerlistado());
     }
-    public void modificacion(Usuario usuario2)
+    public void modificacion()
     {
          // este procedimiento recibira el usuario que haya elegido el administrador al aser click en el icono(segun mi imaginacion). ya que para mostrar un usuario se uso una variable para
         // hacerlo y los datos que se cambien se recibiraan a aqui. como en el tp 4 en Modificar libro. revisar tp4(nombre del archivo"porultimaveztp4"
-        getR().modificarusuariobean(usuario2);
+        try
+      {
+          getR().modificarusuariobean(getUsuariomod());
+          obtenerlista();
+          FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_INFO,"SE REALIZO UN CAMBIO",":)"); 
+          FacesContext.getCurrentInstance().addMessage(null, facesmessage);
+         
+      }
+      catch(Exception e)
+      {
+          FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al cargar",":("); 
+          FacesContext.getCurrentInstance().addMessage(null, facesmessage);
+      }
+      setUnusuario(new Usuario());
+      // para limpiar los campos cuando se termine de cargar un usuario
+     
+     
     }
 
     /**
@@ -207,6 +226,20 @@ public class UsuarioFormbean implements Serializable {
      */
     public void setR(UsuarioBean r) {
         this.r = r;
+    }
+
+    /**
+     * @return the usuariomod
+     */
+    public Usuario getUsuariomod() {
+        return usuariomod;
+    }
+
+    /**
+     * @param usuariomod the usuariomod to set
+     */
+    public void setUsuariomod(Usuario usuariomod) {
+        this.usuariomod = usuariomod;
     }
 
     

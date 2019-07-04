@@ -7,10 +7,10 @@
       <column name="iddetalle"/>
       <generator class="assigned"/>
     </id>
-    <many-to-one class="aplicacion.modelo.dominio.Factura" fetch="select" name="factura">
+    <many-to-one class="aplicacion.modelo.dominio.Factura" fetch="join" cascade="all" name="factura">
       <column name="factura_numFactura" not-null="true"/>
     </many-to-one>
-    <many-to-one class="aplicacion.modelo.dominio.Producto" fetch="select" name="producto">
+    <many-to-one class="aplicacion.modelo.dominio.Producto" fetch="join" cascade="all" name="producto">
       <column name="productos_codProducto" not-null="true"/>
     </many-to-one>
     <property name="cantidad" type="java.lang.Integer">

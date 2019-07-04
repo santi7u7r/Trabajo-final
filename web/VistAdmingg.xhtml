@@ -8,8 +8,9 @@
     </h:head>
     <h:body style="background-color: black !important">
         <h:form id="frm1">
+            <p:growl id="newmensaje" showDetail="true"/>
             <p:panel header="Usuarios Ingresados" >
-                <p:linkButton value="Crear Productos" outcome="Creacion" id="linkpag"/>
+                <p:commandButton id="btn"   value="Crear Productos"  action="ff" />
                 <p:panelGrid columns="5">
                     <p:dataTable id="tabla" value="#{usuarioFormbean.g}" emptyMessage="Nada" var="us">
                         <p:column headerText="Nombre Usuario">
@@ -47,14 +48,14 @@
             <h:form id="modifiacion">
                 <p:panelGrid id="tblmodicus" columns="2">
                     <p:outputLabel value="UserName"/>
-                    <p:inputText value="#{usuarioFormbean.usuarioactivo.nombreUsuario}"/>
+                    <p:inputText value="#{usuarioFormbean.usuariomod.nombreUsuario}"/>
                     <p:outputLabel value="Contraseña"/>
-                    <p:password value="#{usuarioFormbean.usuarioactivo.password}"/>
+                    <p:password value="#{usuarioFormbean.usuariomod.password}"/>
                     <p:outputLabel value="Apellido"/>
-                    <p:inputText value="#{usuarioFormbean.usuarioactivo.apellidos}"/>
+                    <p:inputText value="#{usuarioFormbean.usuariomod.apellidos}"/>
                     <p:outputLabel value="Nombre"/>
-                    <p:inputText value="#{usuarioFormbean.usuarioactivo.apellidos}"/>
-                    <p:commandButton value="Mod" actionListener="#{usuarioFormbean.modificacion(us)}" update=":frm1:tabla"
+                    <p:inputText value="#{usuarioFormbean.usuariomod.nombres}"/>
+                    <p:commandButton value="Mod" actionListener="#{usuarioFormbean.modificacion()}" update=":frm1:tabla :frm1:newmensaje"
                                      oncomplete="PF('ModificarUs').hide()"/>
                 </p:panelGrid>
             </h:form>

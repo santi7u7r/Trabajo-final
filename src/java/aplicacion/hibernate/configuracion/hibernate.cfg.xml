@@ -6,7 +6,7 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/proyecto?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">soyelmejor32</property>
+    <property name="hibernate.connection.password"></property>
     <mapping resource="aplicacion/hibernate/mapeo/Clientes.hbm.xml"/>
     <mapping resource="aplicacion/hibernate/mapeo/Categorias.hbm.xml"/>
     <mapping resource="aplicacion/hibernate/mapeo/Usuarios.hbm.xml"/>

@@ -5,10 +5,12 @@
  */
 package aplicacion.beans;
 
+import aplicacion.dao.DetalleDAO;
 import aplicacion.dao.ProductoDAO;
+import aplicacion.dao.imp.DetalleDAOImp;
 import aplicacion.dao.imp.ProductoDAOImp;
 import aplicacion.modelo.dominio.Producto;
-import java.util.List;
+import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -18,31 +20,25 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class ProductoBean {
+public class ProductoBean1 {
     private ProductoDAO productodao;
+    DetalleDAO detalledao;
     /**
-     * Creates a new instance of ProductoBean
+     * Creates a new instance of ProductoBean1
      */
-    public ProductoBean() {
+    public ProductoBean1() {
     productodao=new ProductoDAOImp();
+    detalledao=new DetalleDAOImp();
     }
-    public void agregarproduc(Producto r)
+    public void agregar(Producto a)
     {
-      getProductodao().crearProducto(r);
+        getProductodao().crearProducto(a);
     }
-    public void borrarproduct(Producto y)
+    public ArrayList<Producto> obtenerlista()
     {
-        getProductodao().borrarProducto(y);
-    }
-    public void modificarproduct(Producto u)
-    {
-        getProductodao().modificarProducto(u);
-    }
-    public List<Producto> obtenerlistado()
-    {
-      
         return getProductodao().obtenerTodos();
     }
+
     /**
      * @return the productodao
      */
@@ -56,5 +52,6 @@ public class ProductoBean {
     public void setProductodao(ProductoDAO productodao) {
         this.productodao = productodao;
     }
-
+    
+    
 }

@@ -6,7 +6,7 @@
 package aplicacion.dao;
 
 import aplicacion.modelo.dominio.Producto;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,5 +16,5 @@ public interface ProductoDAO {
     public void crearProducto(Producto producto);
     public void borrarProducto(Producto producto);
     public void modificarProducto(Producto producto);
-    public List<Producto> obtenerTodos();
+    public ArrayList<Producto> obtenerTodos();
 }

@@ -47,6 +47,7 @@ public class UsuarioBean {
     public void modificarusuariobean(Usuario e)
     {
         getClienteDAO().modificarUsuario(e);
+        System.out.println("hola");
     }
     public Usuario validacion_user(String nombre,String pass)
     {
