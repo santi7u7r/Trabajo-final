@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Jugos</title>
+    </h:head>
+    <h:body >
+        <ui:composition template="./resources/template.xhtml">
+            <ui:define name="left">
+            <p:outputLabel value="Acairiaelformbeanconelnombredelusuario"/>
+            <p:linkButton value="Ajustes" outcome="Ajustes"/>
+            </ui:define>
+            <ui:define name="content">
+        <p:panel id="basic" header="Pancho con queso" style="margin-bottom:20px">
+        <h:panelGrid columns="2" cellpadding="10">
+            
+            <h:outputText
+                value="Panchos con queso" />
+            <p:commandButton value="Añadir al carro" actionListener="xd"/>
+        </h:panelGrid>
+    </p:panel>
+        <p:panel id="basic2" header="Pancho sin queso" style="margin-bottom:20px">
+        <h:panelGrid columns="2" cellpadding="10">
+            <img src="logeo.png" alt="Panchosabroso"/>
+            <h:outputText
+                value="Pancho sin queso para  toda la familia :)" />
+            <p:commandButton value="Añadir al carro"/>
+        </h:panelGrid>
+    </p:panel>
+        <p:panel id="basic3" header="Pancho completo" style="margin-bottom:20px">
+        <h:panelGrid columns="2" cellpadding="10">
+            <p:graphicImage value="/resources/imagen/logeo.png" />
+            <h:outputText
+                value="Jajaj xd alto pancho me morfe" />
+            <p:commandButton value="Añadir al carro"/>
+        </h:panelGrid>
+    </p:panel>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
