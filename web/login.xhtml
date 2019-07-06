@@ -28,7 +28,9 @@
                     <h:form id="formdiag">
                         <p:panelGrid columns="2">
                             <p:outputLabel  id="out3" value="Ingrese nombre de usuario"/>
-                            <p:inputText id="txtd1" value="#{usuarioFormBean.unusuario.nombreUsuario}" required="true" label="Es necesario cargar el nombre de usuario"/>
+                            <p:inputText id="txtd1" value="#{usuarioFormBean.unusuario.nombreUsuario}" required="true" label="Es necesario cargar el nombre de usuario">
+                                <f:validator validatorId="validatorusuario"/>
+                            </p:inputText>
                             <p:outputLabel id="out4" value="ingrese contraseña" />
                             <p:password id="txtd2" value="#{usuarioFormBean.unusuario.password}" promptLabel="ingrese contraseña" weakLabel="Debil" goodLabel="Buena" strongLabel="Muy Buena" feedback="true" required="true" label="se requiere contraseña"/>
                             <p:outputLabel id="out6" value="Ingrese nombre" />

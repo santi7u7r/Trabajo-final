@@ -54,10 +54,33 @@ public class CategoriaFormBeans {
              FacesContext.getCurrentInstance().addMessage(null, facesMessage);
          }
     }
-    public void modificarCategoria(Categoria categoria)
+    public void modificarCategoria(Categoria categoria1)
     {
-        
+        try {
+             getCategoriabean().modificarCategoria(categoria1);
+             listaCategoria= categoriabean.obtenerListado();
+             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Se modifico con exito", "No hubo problemas al modificar :) ");
+             FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+            }catch (Exception e)
+            {
+             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_WARN, "hubo un error", " :( ");
+             FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+            }
     }
+     public void eliminarCategoria(Categoria c)
+     {
+          c.setEstado(false);
+         try {
+             getCategoriabean().eliminarCategoria(c);
+             listaCategoria= categoriabean.obtenerListado();
+             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Se elimino una categoria", ":D");
+             FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+                     }catch (Exception e)
+         {
+             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_WARN, "hubo un error", " :( ");
+             FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+         }
+     }
     public CategoriaBean getCategoriabean() {
         return categoriabean;
     }
