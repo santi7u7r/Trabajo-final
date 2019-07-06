@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Jugeteria.com</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./resources/TempLog.xhtml">
+            <ui:define name="content">
+                <p:panel id="panel1">
+                    <h:form id="formu">
+                        <p:growl id="mensaje1" showDetail="true"/>
+                        <h:panelGrid id="panelg1" columns="2">
+                            <p:outputLabel id="out1" value="Ingrese Usuario"  for="txt1" />
+                            <p:inputText  id="txt1" value="#{usuarioFormBean.nombre}" label="se requiere nombre de usuario" required="true"/>
+                            <p:outputLabel id="out2" value="Ingrese Contraseña" for="txt2" />
+                            <p:password id="txt2" promptLabel="Por Favor ingrese contraseña"  value="#{usuarioFormBean.pass}" required="true" label="no se ingreso una contraseña"/>
+                            <p:commandButton id="btn"  value="Ingresar" action="#{usuarioFormBean.validarusuario()}" update="mensaje1"  resetValues="true"/>
+                            <p:commandLink id="link1" value="Registrarse" oncomplete="PF('Agregar').show()" resetValues="true"/>
+                        </h:panelGrid>
+                    </h:form> 
+                </p:panel>
+                <p:dialog id="dialogo1" widgetVar="Agregar" header="Crear Cuenta" resizable="false" modal="true" showEffect="fade" hideEffect="shake" height="290">
+                    <h:form id="formdiag">
+                        <p:panelGrid columns="2">
+                            <p:outputLabel  id="out3" value="Ingrese nombre de usuario"/>
+                            <p:inputText id="txtd1" value="#{usuarioFormBean.unusuario.nombreUsuario}" required="true" label="Es necesario cargar el nombre de usuario"/>
+                            <p:outputLabel id="out4" value="ingrese contraseña" />
+                            <p:password id="txtd2" value="#{usuarioFormBean.unusuario.password}" promptLabel="ingrese contraseña" weakLabel="Debil" goodLabel="Buena" strongLabel="Muy Buena" feedback="true" required="true" label="se requiere contraseña"/>
+                            <p:outputLabel id="out6" value="Ingrese nombre" />
+                            <p:inputText id="txtd3" value="#{usuarioFormBean.unusuario.nombres}" required="true" label="no se ingrese el nombre"/>
+                            <p:outputLabel id="out5" value="Ingrese apellido"/>
+                            <p:inputText id="txtd4" value="#{usuarioFormBean.unusuario.apellidos}" required="true" label="no se ingreso el apellido"/>
+                            <p:outputLabel id="out7" value="Ingrese email"/>
+                            <p:inputText id="txtd5" value="#{usuarioFormBean.cliente.mail}" required="true">
+                                <f:validator validatorId="emailValidator"/>
+                            </p:inputText>
+                            <p:outputLabel id="out8" value="ingrese DNI"/>
+                            <p:inputText id="txtd6" value="#{usuarioFormBean.cliente.dni}" required="true"/>
+                            <p:commandButton  id="btn2" value="Cargar Datos"  actionListener="#{usuarioFormBean.agregarusuarios()}" oncomplete="PF('Agregar').hide()" icon="ui-icon-disk" update=":formu:mensaje1" />
+                        </p:panelGrid>
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+       
+    </h:body>
+</html>
+
