@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>VistaAdministrador</title>
+    </h:head>
+    <h:body>
+       <ui:composition template="./resources/TempAdmin.xhtml">
+          
+               <ui:define name="left">
+                   <h:form>
+                <p:commandButton id="linkpag" value="Ver Lista de Productos"  action="VistaProducto"/>      
+                 <p:commandButton id="linkpag1" value="Ver Lista de Categorias"  action="vistaCategoria"/>       
+                   </h:form>
+               </ui:define>
+           <ui:define name="content">
+               <h:form id="formu5" >
+                   <p:growl id="msg3" showDetail="true" />
+                   <p:panel  id="pn6" header="Usuarios Cargados">
+                   <p:dataTable id="tabla" value="#{usuarioFormBean.listado}" editable="true" emptyMessage="No Hay Usuarios Registrados" var="us">
+                       <p:ajax event="rowEdit" listener="#{usuarioFormBean.onRowEdit}" update=":formu5:msg3"/>
+                       <p:ajax event="rowEditCancel" listener="#{usuarioFormBean.onRowEditCancel}" update=":formu5:msg3"/>
+                       <p:column headerText="Nombre De Usuario">
+                           <p:cellEditor>
+                               <f:facet  name="output">
+                                  <p:outputLabel id="outd1" value="#{us.nombreUsuario}"/> 
+                               </f:facet>
+                               <f:facet name="input">
+                                   <p:inputText id="txttbl1" value="#{us.nombreUsuario}" required="true"/>
+                               </f:facet>
+                           </p:cellEditor>
+                       </p:column>
+                       <p:column headerText="Nombre">
+                            <p:cellEditor >
+                               <f:facet  name="output">
+                                   <p:outputLabel id="outd2" value="#{us.nombres}"/> 
+                               </f:facet>
+                               <f:facet name="input">
+                                   <p:inputText id="txttbl2" value="#{us.nombres}" required="true"/>
+                               </f:facet>
+                           </p:cellEditor>
+                       </p:column>
+                       <p:column headerText="Apellido">
+                              <p:cellEditor >
+                               <f:facet  name="output">
+                                   <p:outputLabel id="outd3" value="#{us.apellidos}"/> 
+                               </f:facet>
+                               <f:facet name="input">
+                                   <p:inputText id="txttbl3" value="#{us.apellidos}" required="true"/>
+                               </f:facet>
+                           </p:cellEditor>
+                       </p:column>
+                       <p:column headerText="Tipo De Usuario">
+                            <p:cellEditor >
+                               <f:facet  name="output">
+                                   <p:outputLabel id="outd4" value="#{us.tipoUsuario}"/> 
+                               </f:facet>
+                               <f:facet name="input">
+                                   <p:inputText id="txttbl4" value="#{us.tipoUsuario}" required="true"/>
+                               </f:facet>
+                           </p:cellEditor>
+                       </p:column>
+                       <p:column headerText="Contraseña">
+                           <p:cellEditor >
+                               <f:facet  name="output">
+                                   <p:outputLabel id="outd5" value="#{us.password}"/> 
+                               </f:facet>
+                               <f:facet name="input">
+                                   <p:inputText id="txttbl5" value="#{us.password}" required="true"/>
+                               </f:facet>
+                           </p:cellEditor>
+                       </p:column>
+                       <p:column headerText="Opciones" >
+                           <p:rowEditor/>
+                           <p:commandButton id="outd10" value="Eliminar" icon="ui-icon-trash" actionListener="#{usuarioFormBean.borrarUsuario(us)}" update="tabla"/>
+                       </p:column>
+                    </p:dataTable>
+               </p:panel>
+           </h:form>
+           </ui:define>
+           
+       </ui:composition>
+    </h:body>
+</html>
+

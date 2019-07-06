@@ -5,10 +5,10 @@
  */
 package aplicacion.dao.imp;
 
-import aplicacion.dao.CategoriaDAO;
-import aplicacion.dao.DetalleDAO;
-import aplicacion.modelo.dominio.Categoria;
-import aplicacion.modelo.dominio.Producto;
+import aplicacion.dao.UsuarioDAO;
+import aplicacion.modelo.dominio.Cliente;
+
+import aplicacion.modelo.dominio.Usuario;
 
 /**
  *
@@ -16,12 +16,23 @@ import aplicacion.modelo.dominio.Producto;
  */
 public class prueba {
     public static void main(String[] args) {
-        DetalleDAO r=new DetalleDAOImp();
-       
-        CategoriaDAO k=new CategoriaDAOImp();
-      for(int y=0;y<k.obtenercat().size();y++)
-      {
-          System.out.println(k.obtenercat().get(y).getNombre());
-      }
+       Usuario usuario= new Usuario();
+       Cliente cliente = new Cliente();
+       UsuarioDAO usuariodao= new UsuarioDAOImp();
+       usuario.setCodigo(0);
+       usuario.setApellidos("Churquina");
+       usuario.setEstado(true);
+       usuario.setNombreUsuario("Santiagochurquina");
+       usuario.setNombres("Santiago Lucas");
+       usuario.setPassword("43211168s");
+       usuario.setTipoUsuario("Admin");
+       cliente.setDni(43211168);
+       cliente.setDomicilio("Alto Comedero");
+       cliente.setMail("santiago_luki@hotmail.com");
+       cliente.setPais("Argentina");
+       cliente.setTelefono("154861062");
+       cliente.setProvincia("jujy");
+       usuario.setCliente(cliente);
+       usuariodao.crearUsuario(usuario);
     }
 }

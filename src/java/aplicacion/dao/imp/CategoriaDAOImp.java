@@ -60,7 +60,7 @@ public class CategoriaDAOImp implements CategoriaDAO, Serializable{
 Session session = Hibernateutil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Categoria.class);
          Criteria add = criteria.add(Restrictions.like("estado",true));// restricion crea filtros. promero escribo cual es atributo que voy comparar y despues el valo al que debe ser igual para que liste los productos
-        ArrayList<Categoria> categoria =(ArrayList) criteria.list();
+        ArrayList<Categoria> categoria =(ArrayList) add.list();
         session.close();
         return categoria;   
     }

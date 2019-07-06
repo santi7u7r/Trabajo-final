@@ -46,7 +46,7 @@ public class UsuarioDAOImp implements UsuarioDAO, Serializable {
         Session session = Hibernateutil.getSessionFactory().openSession();
         session.beginTransaction();
         Criteria criteria = session.createCriteria(Usuario.class);
-        criteria.add(Restrictions.like("nombreUser", nombreUsuario));
+        criteria.add(Restrictions.like("nombreUsuario", nombreUsuario));
         if (!criteria.list().isEmpty()) {
             u = (Usuario) criteria.list().get(0);
         }
@@ -71,12 +71,10 @@ public class UsuarioDAOImp implements UsuarioDAO, Serializable {
     public void crearUsuario(Usuario usuario) {
         Session session = Hibernateutil.getSessionFactory().openSession();
         session.beginTransaction();
-        usuario.setEstado(Boolean.TRUE);
+        usuario.setEstado(true);
         session.save(usuario);
         session.getTransaction().commit();
         session.close();
-         System.out.println("aaaaaaaaa");
-        
     }
 
     @Override
@@ -98,11 +96,8 @@ public class UsuarioDAOImp implements UsuarioDAO, Serializable {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(Usuario.class);
         Criterion Restriction;
-        Criteria add= criteria.add(Restrictions.eq("estado", true));
-        for(int i=0;i<add.list().size();i++)
-        {
-            y.add((Usuario)add.list().get(i));
-        }
+        Criteria add= criteria.add(Restrictions.eq("estado",true));
+        y=(ArrayList<Usuario>) add.list();
         session.getTransaction().commit();
         session.close();
         return y;
