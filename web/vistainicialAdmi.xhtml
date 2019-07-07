@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./resources/TempAdmin.xhtml">
+            <ui:define name="content">
+               <h:form id="frm14" >
+                   <p:menubar id="menu2">
+                       <p:submenu   id="menusub1" label="Tablas">
+                           <p:menuitem value="Usuarios" outcome="/vistaAdministrador"/>
+                           <p:menuitem value="Datos Personales" outcome="/Ajuste"/>
+                           <p:menuitem value="Volver" outcome="/login" />        
+                       </p:submenu>
+                       <f:facet name="options">
+                           <p:outputLabel id="out89" value="Bienvenido: #{usuarioFormBean.nombreUsuarioValidado}"/>
+                           <p:commandButton value="Cerrar Session" />
+                       </f:facet>
+                   </p:menubar>
+                   
+                              
+                  
+               </h:form>
+            </ui:define>
+            
+        </ui:composition>
+    </h:body>
+</html>
+

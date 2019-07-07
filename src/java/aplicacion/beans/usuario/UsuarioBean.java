@@ -19,7 +19,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class UsuarioBean {
+public class UsuarioBean implements Serializable{
      private UsuarioDAO usuariodao;
     /**
      * Creates a new instance of UsuarioBean

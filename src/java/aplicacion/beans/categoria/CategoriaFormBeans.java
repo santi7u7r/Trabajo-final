@@ -6,6 +6,7 @@
 package aplicacion.beans.categoria;
 
 import aplicacion.modelo.dominio.Categoria;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.annotation.PostConstruct;
@@ -14,6 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.event.RowEditEvent;
 
 /**
  *
@@ -21,7 +23,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @SessionScoped
-public class CategoriaFormBeans {
+public class CategoriaFormBeans implements Serializable{
     @ManagedProperty(value = "#{categoriabean}")
     CategoriaBean categoriabean;
     Categoria categoria ;
@@ -54,6 +56,14 @@ public class CategoriaFormBeans {
              FacesContext.getCurrentInstance().addMessage(null, facesMessage);
          }
     }
+    public void onRowEdit(RowEditEvent event)
+  {   Categoria c=(Categoria) event.getObject();
+         modificarCategoria(c); 
+                 }
+   public void onRowEditCancel(RowEditEvent event)
+  {   FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_INFO,"C cancelo la edicion", "Cambios no guardados");
+            FacesContext.getCurrentInstance().addMessage(null, facesmessage);
+  }
     public void modificarCategoria(Categoria categoria1)
     {
         try {
@@ -69,7 +79,6 @@ public class CategoriaFormBeans {
     }
      public void eliminarCategoria(Categoria c)
      {
-          c.setEstado(false);
          try {
              getCategoriabean().eliminarCategoria(c);
              listaCategoria= categoriabean.obtenerListado();

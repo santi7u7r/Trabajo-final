@@ -32,6 +32,7 @@ public class UsuarioFormBean implements Serializable{
  private String pass;
  private ArrayList<Usuario> listado;
  private Cliente cliente;
+ private String nombreUsuarioValidado;
  /**
      * Creates a new instance of UsuarioFormBean
      */
@@ -58,12 +59,20 @@ public class UsuarioFormBean implements Serializable{
       {
           if(getUnusuario().getTipoUsuario().equals("Admin"))
           {
-                  a="vistaAdministrador?faces-redirect=true";
+                  
+                  FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", getUnusuario().getNombres());
+                  FacesContext.getCurrentInstance().addMessage(null, message);
+                  FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariovalidado", unusuario);
+                   a="vistainicialAdmi?faces-redirect=true";
           }
           else
           {
-               a="paginausuarionormal?faces-redirect=true";
+               FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", getUnusuario().getNombres());
+                  FacesContext.getCurrentInstance().addMessage(null, message);
+                   FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariovalidado", unusuario);
+                  a="paginausuarionormal?faces-redirect=true";
           }
+          
                
       }
       return a;
@@ -73,22 +82,22 @@ public class UsuarioFormBean implements Serializable{
          Random r= new Random(System.currentTimeMillis());
          int codigo = (int) r.nextInt(200);
         getUnusuario().setCodigo(codigo);
-        getUnusuario().setTipoUsuario("Cliente");{
+        getUnusuario().setTipoUsuario("Cliente");
         getUnusuario().setCliente(getCliente());
-  }
+  
         try {
             getUsuariobean().agregarUsuario(getUnusuario());
             listado=usuariobean.obtenerlista();
-            FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_INFO,"Se Cargo un nuevo usuario", "Bienvenido "+getUnusuario().getNombreUsuario());
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariovalidado", unusuario);
+             FacesContext.getCurrentInstance().getExternalContext().redirect("vistainicialAdmi.xhtml");
+             FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_INFO,"Se Cargo un nuevo usuario", "Bienvenido "+getUnusuario().getNombreUsuario());
             FacesContext.getCurrentInstance().addMessage(null, facesmessage);
-           
         }catch(Exception e)
         {
               FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_WARN,"Error al cargar", "ocurrio un error al registrarse ");
             FacesContext.getCurrentInstance().addMessage(null, facesmessage);
           
         }
-  
   }
   public void onRowEdit(RowEditEvent event)
   {   Usuario usuario= (Usuario) event.getObject();
@@ -166,6 +175,17 @@ public class UsuarioFormBean implements Serializable{
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public String getNombreUsuarioValidado() {
+       Usuario usuario;
+      usuario= (Usuario)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuariovalidado");
+      this.nombreUsuarioValidado=usuario.getNombreUsuario();
+      return this.nombreUsuarioValidado;
+    }
+
+    public void setNombreUsuarioValidado(String nombreUsuarioValidado) {
+        this.nombreUsuarioValidado = nombreUsuarioValidado;
     }
    
 }

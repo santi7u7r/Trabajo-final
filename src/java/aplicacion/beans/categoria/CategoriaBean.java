@@ -8,6 +8,7 @@ package aplicacion.beans.categoria;
 import aplicacion.dao.CategoriaDAO;
 import aplicacion.dao.imp.CategoriaDAOImp;
 import aplicacion.modelo.dominio.Categoria;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -18,7 +19,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class CategoriaBean {
+public class CategoriaBean implements Serializable{
     private CategoriaDAO categoriaDAO;
     
     /**
@@ -35,9 +36,9 @@ public class CategoriaBean {
     {
         categoriaDAO.modificarCategoria(categoria);
     }
-    public void eliminarCategoria ( Categoria categoria)
+    public void eliminarCategoria ( Categoria c)
     {
-        categoriaDAO.borrarCategoria(categoria);
+        categoriaDAO.borrarCategoria(c);
     }
     public ArrayList<Categoria> obtenerListado()
     {

@@ -1,12 +1,53 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <ui:composition template="./resources/template.xhtml">
+            <ui:define name="left" >
+                <h:form id="frm6">
+                    <p:outputLabel id="outu1" value="#{usuarioFormBean.unusuario.nombreUsuario}"/>
+                    <p:commandLink value="Ajustes" action="VistaProducto"/>
+                </h:form>
+            </ui:define>
+            <ui:define name="content">
+                <h:form id="frm7" >
+                    <p:dataList id="datal" value="#{productoFormBean.productos}" var="prod" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+                        <f:facet name="header" >
+                            Productos a la Venta
+                        </f:facet>
+                        <p:commandLink update=":form8:proDetail" oncomplete="PF ('Productos').show()" title="View Detail" styleClass="ui-icon pi pi-search" style="float: left;margin-top: 3px;margin-right: 10px; color: #D20005">
+                            <f:setPropertyActionListener value="#{prod}" target="#{productoFormBean.p}" />
+                            <h:outputText value="#{prod.codProducto}, #{prod.precio}"/>
+                    </p:commandLink>
+                        <h:outputText value="#{prod.codProducto}, #{prod.precio}" style="display: inline-block"/>
+                    </p:dataList>
+                </h:form>
+                <p:dialog id="dialg1" header="Detalles" widgetVar="Productos" modal="true" showEffect="blind" hideEffect="explode" resizable="false">
+                    <h:form id="frmdialg1" >
+                        <p:outputPanel id="prodDetail" style="text-align: center">
+                            <h:panelGrid id="prodDetail4" columns="2" rendered="#{not empty  productoFormBean.productobean}" columnClasses="label,value">
+                                <h:outputText value="Codigo" id="out17" />
+                                <h:outputText value="#{prod.codProducto}"/>
+                                <h:outputText value="Categoria" id="out18" />
+                                <h:outputText value="#{prod.categoria.nombre}"   id="out19"/>
+                                <h:outputText id="out22" value="Precio" />
+                                <h:outputText value="#{prod.precio}"  id="out20" />
+                                <h:outputText value="Stock" id="out23" />
+                                <h:outputText value="#{prod.stock}" id="out21" /> 
+                        </h:panelGrid>
+                            </p:outputPanel>
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+       
     </h:body>
 </html>
 

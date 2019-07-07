@@ -39,6 +39,7 @@ public class CategoriaDAOImp implements CategoriaDAO, Serializable{
 
     @Override
     public void borrarCategoria(Categoria categoria) {
+        categoria.setEstado(false);
         Session session=Hibernateutil.getSessionFactory().openSession();
         session.beginTransaction();
         session.update(categoria);

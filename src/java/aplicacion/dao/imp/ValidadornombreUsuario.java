@@ -19,7 +19,7 @@ import org.primefaces.validate.ClientValidator;
  *
  * @author santiago
  */
-@FacesValidator(value =" validatorusuario")
+@FacesValidator("validatorusuario")
 public class ValidadornombreUsuario implements Validator, ClientValidator{
     String nombre;
     UsuarioDAO usuarioDAO;
@@ -33,7 +33,7 @@ public class ValidadornombreUsuario implements Validator, ClientValidator{
         {
          return;  
         }
-    if(usuarioDAO.obtenerUsuario(nombre)==null)
+    if(usuarioDAO.obtenerUsuario(nombre)!=null)
     {
         throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de validacion", "El nombre de usuario"+ o+" ya existe" ));
     }
