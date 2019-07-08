@@ -43,6 +43,10 @@ public class Productobean implements Serializable{
  {
      return getProductoDAO().obtenerTodos();
  }
+ public Producto consultarProducto (int a)
+ {
+    return getProductoDAO().consultarProducto(a);
+ }
     public ProductoDAO getProductoDAO() {
         return productoDAO;
     }

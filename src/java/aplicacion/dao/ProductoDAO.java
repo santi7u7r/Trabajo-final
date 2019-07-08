@@ -17,4 +17,5 @@ public interface ProductoDAO {
     public void borrarProducto(Producto producto);
     public void modificarProducto(Producto producto);
     public ArrayList<Producto> obtenerTodos();
+    public Producto consultarProducto(int cod);
 }

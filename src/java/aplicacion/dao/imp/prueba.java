@@ -23,13 +23,14 @@ public class prueba {
         categoria.setCantidadproduc(2);
         categoria.setDescripcion("noc");
         categoria.setEstado(true);
-        categoria.setIdcategoria(56);
+        categoria.setIdcategoria(96);
         categoria.setNombre("jugetesasdas");        
         producto.setCategoria(categoria);
-        producto.setCodProducto(4);
+        producto.setCodProducto(6);
         producto.setEstado(true);
-        producto.setPrecio(20.60);
-        producto.setDescripcion("aggg");
+        producto.setStock(10);
+        producto.setPrecio(21.60);
+        producto.setDescripcion("para tu mama");
        productoDAO.crearProducto(producto);
     }
 }

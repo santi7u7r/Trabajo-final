@@ -26,6 +26,7 @@ public class ProductoDAOImp implements ProductoDAO, Serializable {
     public void crearProducto(Producto producto) {
         Session session = Hibernateutil.getSessionFactory().openSession();
         session.beginTransaction();
+        System.out.println("55");
         session.save(producto);
         session.getTransaction().commit();
         session.close();
@@ -53,10 +54,25 @@ public class ProductoDAOImp implements ProductoDAO, Serializable {
     public ArrayList<Producto> obtenerTodos() {
        Session session = Hibernateutil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Producto.class);
-        criteria.add(Restrictions.isNotNull("codProducto"));// restricion crea filtros. promero escribo cual es atributo que voy comparar y despues el valo al que debe ser igual para que liste los productos
+        criteria.add(Restrictions.like("estado", true));// restricion crea filtros. promero escribo cual es atributo que voy comparar y despues el valo al que debe ser igual para que liste los productos
         ArrayList<Producto> productos =(ArrayList) criteria.list();
         session.close();
         return productos;
+    }
+
+    @Override
+    public Producto consultarProducto(int cod) {
+       Producto u=null;
+        Session session = Hibernateutil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(Producto.class);
+        criteria.add(Restrictions.like("codProducto", cod));
+        if (!criteria.list().isEmpty()) {
+            u = (Producto) criteria.list().get(0);
+        }
+        session.getTransaction().commit();
+        session.close();
+        return u;
     }
      
      
