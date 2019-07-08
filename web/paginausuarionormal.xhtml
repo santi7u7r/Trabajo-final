@@ -77,7 +77,7 @@
                         <p:selectOneMenu id="xddxxdxdxdxxdxdx" value="#{productoFormBean.p.categoria}"
                                          converter="omnifaces.SelectItemsConverter">
                             <f:selectItem id="ppepe" itemLabel="Seleccione Cat" itemValue="#{null}" noSelectionOption="true"/>
-                            <f:selectItems id="oo" value="#{productoFormBean.lista}"
+                            <f:selectItems id="oo" value="#{productoFormBean.categoriaformbean.listaCategoria}" 
                                            var="cat" 
                                            itemLabel="#{cat.nombre}" itemValue="#{cat}"/>
                         </p:selectOneMenu>

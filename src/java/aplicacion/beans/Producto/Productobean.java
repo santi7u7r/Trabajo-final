@@ -17,7 +17,7 @@ import javax.faces.bean.SessionScoped;
  *
  * @author santiago
  */
-@ManagedBean
+@ManagedBean 
 @SessionScoped
 public class Productobean implements Serializable{
     private ProductoDAO productoDAO;

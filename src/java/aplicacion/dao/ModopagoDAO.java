@@ -12,7 +12,8 @@ import aplicacion.modelo.dominio.Modopago;
  * @author José Luis
  */
 public interface ModopagoDAO {
-    void crearModopago(Modopago modopago);
-    void borrarModopago(Modopago modopago);
-    void modificarModopago(Modopago modopago);
+    public void crearModopago(Modopago modopago);
+    public void borrarModopago(Modopago modopago);
+   public  void modificarModopago(Modopago modopago);
+   public Modopago obtenerModopago(int idmodoPago);
 }

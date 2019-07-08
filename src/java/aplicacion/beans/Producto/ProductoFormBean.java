@@ -5,6 +5,7 @@
  */
 package aplicacion.beans.Producto;
 
+import aplicacion.beans.categoria.CategoriaBean;
 import aplicacion.beans.categoria.CategoriaFormBeans;
 import aplicacion.modelo.dominio.Categoria;
 import aplicacion.modelo.dominio.Producto;
@@ -31,13 +32,14 @@ import org.primefaces.model.UploadedFile;
 public class ProductoFormBean implements Serializable{
  @ManagedProperty (value = "#{productobean}")
   private Productobean productobean;
- @ManagedProperty (value = "#{categoriabean")
-    private CategoriaFormBeans categoriabean;
   private  ArrayList<Categoria> lista;
+  @ManagedProperty (value="#{categoriaformbean}")
+   CategoriaFormBeans categoriaformbean;
     private Producto p;
     private ArrayList<Producto> productos;
     private transient UploadedFile u=null;
     private StreamedContent fotoProducto;
+    
     /**
      * Creates a new instance of ProductoFormBean
      */
@@ -47,11 +49,12 @@ public class ProductoFormBean implements Serializable{
     }
     @PostConstruct
     public void init()
-    {
-        categoriabean=new CategoriaFormBeans();
-       productobean=new Productobean();
+            
+    {  productobean=new Productobean();
+        categoriaformbean.init();
         productos=getProductobean().obtenerProductos();
-        lista=getCategoriabean().getListaCategoria();
+        lista= (ArrayList<Categoria>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("listacategoria");
+        
     }
     public void establecerProducto(Producto producto)
     {
@@ -167,21 +170,20 @@ public class ProductoFormBean implements Serializable{
     public void setFotoProducto(StreamedContent fotoProducto) {
         this.fotoProducto = fotoProducto;
     }
-
-    public CategoriaFormBeans getCategoriabean() {
-        return categoriabean;
-    }
-
-    public void setCategoriabean(CategoriaFormBeans categoriabean) {
-        this.categoriabean = categoriabean;
-    }
-
     public ArrayList<Categoria> getLista() {
         return lista;
     }
 
     public void setLista(ArrayList<Categoria> lista) {
         this.lista = lista;
+    }
+
+    public CategoriaFormBeans getCategoriaformbean() {
+        return categoriaformbean;
+    }
+
+    public void setCategoriaformbean(CategoriaFormBeans categoriaformbean) {
+        this.categoriaformbean = categoriaformbean;
     }
     
 }

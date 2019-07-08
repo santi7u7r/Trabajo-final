@@ -31,13 +31,17 @@ public class CategoriaFormBeans implements Serializable{
     /**
      * Creates a new instance of CategoriaFormBeans
      */
-    public CategoriaFormBeans() {
-    }
+   
     @PostConstruct
     public void  init()
     {
         categoriabean=new CategoriaBean();
-        listaCategoria= categoriabean.obtenerListado();
+        listaCategoria= getCategoriabean().obtenerListado();
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listacategoria", listaCategoria);
+                for(int i=0;i<listaCategoria.size();i++)
+        {
+            System.out.println(listaCategoria.get(i).getNombre());
+        }
     }
     public void agregarCategoria ()
     {
@@ -48,6 +52,7 @@ public class CategoriaFormBeans implements Serializable{
          try {
              getCategoriabean().agregarCategoria(categoria);
              listaCategoria= categoriabean.obtenerListado();
+             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listacategoria", listaCategoria);
              FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Se cargo una nueva categoria", "la nueva categoria es: "+ categoria.getNombre());
              FacesContext.getCurrentInstance().addMessage(null, facesMessage);
                      }catch (Exception e)
@@ -64,6 +69,7 @@ public class CategoriaFormBeans implements Serializable{
   {   FacesMessage facesmessage= new FacesMessage(FacesMessage.SEVERITY_INFO,"C cancelo la edicion", "Cambios no guardados");
             FacesContext.getCurrentInstance().addMessage(null, facesmessage);
   }
+  
     public void modificarCategoria(Categoria categoria1)
     {
         try {
@@ -107,7 +113,7 @@ public class CategoriaFormBeans implements Serializable{
     }
 
     public ArrayList<Categoria> getListaCategoria() {
-        return listaCategoria;
+               return listaCategoria;
     }
 
     public void setListaCategoria(ArrayList<Categoria> listaCategoria) {

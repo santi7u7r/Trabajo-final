@@ -14,9 +14,10 @@ import java.util.List;
  * @author José Luis
  */
 public interface FacturaDAO {
-    void crearFactura(Factura factura);
-    void borrarFactura(Factura factura);
-    void modificarFactura(Factura factura);
-    List<Factura> obtenerPorCliente(int dni);
-    List<Factura> obtenerPorFechas(Date fechaInicio, Date fechaFin);
+   public void crearFactura(Factura factura);
+   public void borrarFactura(Factura factura);
+  public  void modificarFactura(Factura factura);
+      public Factura obtenerFactura(int numFactura);
+    public List<Factura> obtenerPorCliente(int dni);
+   public  List<Factura> obtenerPorFechas(Date fechaInicio, Date fechaFin);
 }

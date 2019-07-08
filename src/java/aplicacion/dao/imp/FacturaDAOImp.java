@@ -69,5 +69,20 @@ public class FacturaDAOImp implements FacturaDAO, Serializable{
         return facturas;
     }
 
+    @Override
+    public Factura obtenerFactura(int numFactura) {
+  Factura n = null;
+         Session session=Hibernateutil.getSessionFactory().openSession();
+         session.beginTransaction();
+         Criteria criteria = session.createCriteria(Factura.class);
+         criteria.add(Restrictions.like("numFactura", true));
+         if(!criteria.list().isEmpty()){
+             n=(Factura) criteria.list().get(0);
+         }
+         session.getTransaction().commit();
+         session.close();
+         return n;
+        }
+
     
 }

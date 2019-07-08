@@ -65,6 +65,20 @@ Session session = Hibernateutil.getSessionFactory().openSession();
         session.close();
         return categoria;   
     }
+
+    @Override
+    public Categoria obtenerCategoria(int idcategoria) {
+ Categoria c= null;
+        Session session = Hibernateutil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(Categoria.class);
+        criteria.add(Restrictions.like("idcategoria",idcategoria));
+        if (!criteria.list().isEmpty()){
+        c =(Categoria) criteria.list().get(0);
+    }
+    session.getTransaction().commit();
+    session.close();
+    return c;    }
     
     
 }

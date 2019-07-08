@@ -9,7 +9,9 @@ import aplicacion.dao.ModopagoDAO;
 import aplicacion.hibernate.configuracion.Hibernateutil;
 import aplicacion.modelo.dominio.Modopago;
 import java.io.Serializable;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 
 public class ModopagoDAOImp implements ModopagoDAO, Serializable{
@@ -40,6 +42,20 @@ public class ModopagoDAOImp implements ModopagoDAO, Serializable{
         session.getTransaction();
         session.close();
     }
+
+    @Override
+    public Modopago obtenerModopago(int idmodoPago) {
+ Modopago o = null;
+         Session session=Hibernateutil.getSessionFactory().openSession();
+         session.beginTransaction();
+         Criteria criteria = session.createCriteria(Modopago.class);
+         criteria.add(Restrictions.like("idmodoPago", true));
+         if(!criteria.list().isEmpty()){
+             o=(Modopago) criteria.list().get(0);
+         }
+         session.getTransaction().commit();
+         session.close();
+         return o;    }
 
     
     

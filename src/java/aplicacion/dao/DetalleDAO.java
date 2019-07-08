@@ -12,8 +12,8 @@ import aplicacion.modelo.dominio.Detalle;
  * @author José Luis
  */
 public interface DetalleDAO {
-    void crearDetalle(Detalle detalle);
-    void borrarDetalle(Detalle detalle);
-    void modificarDetalle(Detalle detalle);
-    
+    public void crearDetalle(Detalle detalle);
+    public void borrarDetalle(Detalle detalle);
+   public void modificarDetalle(Detalle detalle);
+    public Detalle obtenerDetalle(int iddetalle);
 }

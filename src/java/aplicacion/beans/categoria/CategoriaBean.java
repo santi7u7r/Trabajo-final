@@ -17,7 +17,7 @@ import javax.faces.bean.SessionScoped;
  *
  * @author santiago
  */
-@ManagedBean
+@ManagedBean 
 @SessionScoped
 public class CategoriaBean implements Serializable{
     private CategoriaDAO categoriaDAO;

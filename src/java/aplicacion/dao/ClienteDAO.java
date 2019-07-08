@@ -6,6 +6,7 @@
 package aplicacion.dao;
 
 import aplicacion.modelo.dominio.Cliente;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,4 +16,6 @@ public interface ClienteDAO {
     public void crearCliente(Cliente cliente);
     public void borrarCliente(Cliente cliente);
     public void modificarCliente(Cliente cliente);
+    public Cliente obtenerCliente(int dni);
+    public ArrayList<Cliente> obtenerCliente();
 }

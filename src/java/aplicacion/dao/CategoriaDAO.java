@@ -17,5 +17,6 @@ public interface CategoriaDAO {
         public void borrarCategoria(Categoria categoria);
         public void modificarCategoria(Categoria categoria);
         public ArrayList<Categoria> obtenercat();
+        public Categoria obtenerCategoria(int idcategoria);
         
 }
